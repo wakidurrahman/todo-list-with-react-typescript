@@ -27,7 +27,10 @@
  * @param {Function} props.onToggleComplete - Optional callback when completion status is toggled
  */
 
+import React from 'react';
+
 import Button from '@/components/atoms/button/Button';
+import Checkbox from '@/components/atoms/checkbox/Checkbox';
 import { Todo } from '@/types/todo.types';
 
 type TodoItemProps = {
@@ -37,41 +40,37 @@ type TodoItemProps = {
   onToggleComplete?: (id: string) => void;
 };
 
-function TodoItem({ todo, onEdit, onDelete, onToggleComplete }: TodoItemProps) {
+const TodoItem: React.FC<TodoItemProps> = ({
+  todo,
+  onEdit,
+  onDelete,
+  onToggleComplete,
+}) => {
   return (
     <div className="card mb-3">
       <div className="card-body">
         <div className="row align-items-start g-3">
           {/* Checkbox and Content Column */}
           <div className="col">
-            <div className="form-check">
-              <input
-                className="form-check-input mt-2"
-                type="checkbox"
-                checked={todo.completed}
-                onChange={() => onToggleComplete?.(todo.id)}
-                id={`todo-${todo.id}`}
-              />
-              <label
-                className={`form-check-label w-100 ${
-                  todo.completed ? 'text-decoration-line-through' : ''
-                }`}
-                htmlFor={`todo-${todo.id}`}
-              >
-                <div className="ms-2">
-                  <h5 className="card-title mb-1 text-break">{todo.title}</h5>
-                  <h6 className="card-subtitle mb-2 text-body-secondary">
-                    <i className="bi bi-clock me-1"></i>
-                    Last updated: {new Date(todo.updatedAt).toLocaleString()}
-                  </h6>
-                  {todo.description && (
-                    <p className="card-text text-break mb-0">
-                      {todo.description}
-                    </p>
-                  )}
-                </div>
-              </label>
-            </div>
+            <Checkbox
+              checked={todo.completed ?? false}
+              onChange={() => onToggleComplete?.(todo.id)}
+              id={`todo-${todo.id}`}
+              value={todo.id}
+            >
+              <div className="ms-2">
+                <h5 className="card-title mb-1 text-break">{todo.title}</h5>
+                <h6 className="card-subtitle mb-2 text-body-secondary">
+                  <i className="bi bi-clock me-1"></i>
+                  Last updated: {new Date(todo.updatedAt).toLocaleString()}
+                </h6>
+                {todo.description && (
+                  <p className="card-text text-break mb-0">
+                    {todo.description}
+                  </p>
+                )}
+              </div>
+            </Checkbox>
           </div>
 
           {/* Action Buttons Column */}
@@ -101,6 +100,6 @@ function TodoItem({ todo, onEdit, onDelete, onToggleComplete }: TodoItemProps) {
       </div>
     </div>
   );
-}
+};
 
 export default TodoItem;
