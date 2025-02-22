@@ -280,11 +280,11 @@ npm run test:watch
 
 ### 🚀 Additional Features (To Enhance Functionality)
 
-- [ ] 📅 Due Dates: Add and display deadlines for each task.
-- [ ] 🎨 Task Priority: Set high, medium, or low priority for tasks.
-- [ ] ✅ Task Completion Toggle: Mark tasks as complete/incomplete.
-- [ ] 🔍 Search Functionality: Search todos by keyword.
-- [ ] 📂 Filter & Sort: Filter tasks by status (completed, pending) or sort by date/priority.
+- [x] 📅 Due Dates: Add and display deadlines for each task.
+- [x] 🎨 Task Priority: Set high, medium, or low priority for tasks.
+- [x] ✅ Task Completion Toggle: Mark tasks as complete/incomplete.
+- [x] 🔍 Search Functionality: Search todos by keyword.
+- [x] 📂 Filter & Sort: Filter tasks by status (completed, pending) or sort by date/priority.
 
 ### 💡 UI/UX Enhancements
 
