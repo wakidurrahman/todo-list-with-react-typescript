@@ -6,6 +6,18 @@ import useError from './hooks/useError';
 function App() {
   const { error, setError, clearError } = useError();
 
+  const TestComponent = () => {
+    const handleErrorClick = () => {
+      throw new Error('Manually triggered error');
+    };
+
+    return (
+      <button className="btn btn-danger" onClick={handleErrorClick}>
+        Trigger Error
+      </button>
+    );
+  };
+
   return (
     <ErrorBoundary>
       <div
@@ -22,6 +34,7 @@ function App() {
           />
         )}
       </div>
+      <TestComponent />
       <TodoApp onError={setError} />
     </ErrorBoundary>
   );
