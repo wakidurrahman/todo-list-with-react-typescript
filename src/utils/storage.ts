@@ -4,37 +4,19 @@
  * for persisting todo items
  */
 
-import { createTodo, fetchTodos } from '../services/todoApi';
+import {
+  createTodo,
+  deleteTodo,
+  fetchTodos,
+  updateTodo,
+} from '../services/todoApi';
 import { Todo } from '../types/todo.types';
 
 // Key used to store todos in localStorage
 const STORAGE_KEY = 'todos';
 const USE_API = import.meta.env.VITE_USE_API === 'true';
 
-/**
- * Retrieves all todos from localStorage
- * @returns {Todo[]} Array of todo items, empty array if none exist
- * @throws {Error} If API call fails and localStorage fallback is not available
- */
-export const getTodos = async (): Promise<Todo[]> => {
-  if (USE_API) {
-    try {
-      const todos = await fetchTodos();
-      return todos;
-    } catch (error) {
-      // Try localStorage fallback
-      try {
-        return getLocalTodos();
-      } catch (fallbackError) {
-        throw new Error(
-          'Failed to fetch todos: API unavailable and localStorage fallback failed'
-        );
-      }
-    }
-  }
-  return getLocalTodos();
-};
-
+// Local Storage Functions
 const getLocalTodos = (): Todo[] => {
   try {
     const todosJson = localStorage.getItem(STORAGE_KEY);
@@ -44,12 +26,7 @@ const getLocalTodos = (): Todo[] => {
   }
 };
 
-/**
- * Saves todos to localStorage
- * @param todos - Array of todo items to save
- * @throws {Error} If saving to localStorage fails
- */
-export const saveTodos = (todos: Todo[]): void => {
+const saveLocalTodos = (todos: Todo[]): void => {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
   } catch (error) {
@@ -57,41 +34,10 @@ export const saveTodos = (todos: Todo[]): void => {
   }
 };
 
-/**
- * Adds a new todo item
- * @param todo - Todo data without id and timestamps
- * @returns {Todo} Newly created todo with generated id and timestamps
- * @throws {Error} If creating todo fails in both API and localStorage
- */
-export const addTodo = async (
-  // Omit utility type excludes specified properties ('id', 'createdAt', 'updatedAt') from Todo type,
-  // creating a new type with only the remaining properties
+const addLocalTodo = (
   todo: Omit<Todo, 'id' | 'createdAt' | 'updatedAt'>
-): Promise<Todo> => {
-  if (USE_API) {
-    try {
-      const newTodo = await createTodo(todo);
-      const todos = await getTodos();
-      todos.push(newTodo);
-      return newTodo;
-    } catch (error) {
-      // Try localStorage fallback
-      try {
-        return await addTodoToLocal(todo);
-      } catch (fallbackError) {
-        throw new Error(
-          'Failed to create todo: API unavailable and localStorage fallback failed'
-        );
-      }
-    }
-  }
-  return addTodoToLocal(todo);
-};
-
-const addTodoToLocal = async (
-  todo: Omit<Todo, 'id' | 'createdAt' | 'updatedAt'>
-): Promise<Todo> => {
-  const todos = await getTodos();
+): Todo => {
+  const todos = getLocalTodos();
   const newTodo: Todo = {
     ...todo,
     completed: false,
@@ -100,61 +46,87 @@ const addTodoToLocal = async (
     updatedAt: new Date(),
   };
   todos.push(newTodo);
-  saveTodos(todos);
+  saveLocalTodos(todos);
   return newTodo;
 };
 
-/**
- * Updates an existing todo item
- * @param id - ID of todo to update
- * @param todoData - Partial todo data to update
- * @returns {Todo | null} Updated todo or null if not found
- * @throws {Error} If updating todo fails
- */
-export const updateTodo = async (
-  id: string,
-  /** Partial todo data containing only the fields that need to be updated */
-  todoData: Partial<Todo>
-): Promise<Todo | null> => {
+const updateLocalTodo = (id: string, todoData: Partial<Todo>): Todo | null => {
+  const todos = getLocalTodos();
+  const index = todos.findIndex((todo) => todo.id === id);
+
+  if (index === -1) return null;
+
+  todos[index] = {
+    ...todos[index],
+    ...todoData,
+    updatedAt: new Date(),
+  };
+
+  saveLocalTodos(todos);
+  return todos[index];
+};
+
+const deleteLocalTodo = (id: string): boolean => {
+  const todos = getLocalTodos();
+  const filteredTodos = todos.filter((todo) => todo.id !== id);
+
+  if (filteredTodos.length === todos.length) return false;
+
+  saveLocalTodos(filteredTodos);
+  return true;
+};
+
+// Public Interface Functions
+export const getTodos = async (): Promise<Todo[]> => {
+  if (!USE_API) return getLocalTodos();
+
   try {
-    const todos = await getTodos();
-    const index = todos.findIndex((todo) => todo.id === id);
-
-    if (index === -1) return null;
-
-    todos[index] = {
-      ...todos[index],
-      ...todoData,
-      updatedAt: new Date(),
-    };
-
-    saveTodos(todos);
-    return todos[index];
+    return await fetchTodos();
   } catch (error) {
-    throw new Error(
-      `Failed to update todo: ${error instanceof Error ? error.message : 'Unknown error'}`
-    );
+    throw new Error('Failed to fetch todos from API');
   }
 };
 
-/**
- * Deletes a todo item
- * @param id - ID of todo to delete
- * @returns {boolean} True if todo was deleted, false if not found
- * @throws {Error} If deleting todo fails
- */
-export const deleteTodo = async (id: string): Promise<boolean> => {
+export const saveTodos = (todos: Todo[]): void => {
+  if (!USE_API) {
+    saveLocalTodos(todos);
+    return;
+  }
+  throw new Error('Save todos not supported in API mode');
+};
+
+export const addTodo = async (
+  todo: Omit<Todo, 'id' | 'createdAt' | 'updatedAt'>
+): Promise<Todo> => {
+  if (!USE_API) return addLocalTodo(todo);
+
   try {
-    const todos = await getTodos();
-    const filteredTodos = todos.filter((todo) => todo.id !== id);
+    return await createTodo(todo);
+  } catch (error) {
+    throw new Error('Failed to create todo in API');
+  }
+};
 
-    if (filteredTodos.length === todos.length) return false;
+export const updateTodoInAPI = async (
+  id: string,
+  todoData: Partial<Todo>
+): Promise<Todo | null> => {
+  if (!USE_API) return updateLocalTodo(id, todoData);
 
-    saveTodos(filteredTodos);
+  try {
+    return await updateTodo(id, todoData);
+  } catch (error) {
+    throw new Error('Failed to update todo in API');
+  }
+};
+
+export const deleteTodoInAPI = async (id: string): Promise<boolean> => {
+  if (!USE_API) return deleteLocalTodo(id);
+
+  try {
+    await deleteTodo(id);
     return true;
   } catch (error) {
-    throw new Error(
-      `Failed to delete todo: ${error instanceof Error ? error.message : 'Unknown error'}`
-    );
+    throw new Error('Failed to delete todo from API');
   }
 };
