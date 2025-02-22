@@ -78,8 +78,8 @@ This project is mainly for studying AI and practicing related concepts. where I 
 - [x] ✅ Prettier Configuration
 - [x] ✅ TypeScript Configuration
 - [x] ✅ Testing Setup
-- [x] ✅ Error Handling
-- [x] ✅ Error Boundaries
+- [x] ✅ Error Handling using custom hook
+- [x] ✅ Error Boundaries and Error Fallback
 - [x] ✅ Toast Notification
 - [x] ✅ Loading State
 - [x] ✅ Tooltip

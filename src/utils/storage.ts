@@ -4,6 +4,7 @@
  * for persisting todo items
  */
 
+import { env } from '../config/env';
 import {
   createTodo,
   deleteTodo,
@@ -14,7 +15,6 @@ import { Todo } from '../types/todo.types';
 
 // Key used to store todos in localStorage
 const STORAGE_KEY = 'todos';
-const USE_API = import.meta.env.VITE_USE_API === 'true';
 
 // Local Storage Functions
 const getLocalTodos = (): Todo[] => {
@@ -78,7 +78,7 @@ const deleteLocalTodo = (id: string): boolean => {
 
 // Public Interface Functions
 export const getTodos = async (): Promise<Todo[]> => {
-  if (!USE_API) return getLocalTodos();
+  if (!env.USE_API) return getLocalTodos();
 
   try {
     return await fetchTodos();
@@ -88,7 +88,7 @@ export const getTodos = async (): Promise<Todo[]> => {
 };
 
 export const saveTodos = (todos: Todo[]): void => {
-  if (!USE_API) {
+  if (!env.USE_API) {
     saveLocalTodos(todos);
     return;
   }
@@ -98,7 +98,7 @@ export const saveTodos = (todos: Todo[]): void => {
 export const addTodo = async (
   todo: Omit<Todo, 'id' | 'createdAt' | 'updatedAt'>
 ): Promise<Todo> => {
-  if (!USE_API) return addLocalTodo(todo);
+  if (!env.USE_API) return addLocalTodo(todo);
 
   try {
     return await createTodo(todo);
@@ -111,7 +111,7 @@ export const updateTodoInAPI = async (
   id: string,
   todoData: Partial<Todo>
 ): Promise<Todo | null> => {
-  if (!USE_API) return updateLocalTodo(id, todoData);
+  if (!env.USE_API) return updateLocalTodo(id, todoData);
 
   try {
     return await updateTodo(id, todoData);
@@ -121,7 +121,7 @@ export const updateTodoInAPI = async (
 };
 
 export const deleteTodoInAPI = async (id: string): Promise<boolean> => {
-  if (!USE_API) return deleteLocalTodo(id);
+  if (!env.USE_API) return deleteLocalTodo(id);
 
   try {
     await deleteTodo(id);
