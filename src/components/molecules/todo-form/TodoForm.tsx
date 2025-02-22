@@ -19,13 +19,13 @@
 
 import { useEffect, useState } from 'react';
 
-import { Todo, TodoFormData } from '../../../types/todo.types';
+import Button from '@/components/atoms/button/Button';
+import { Todo, TodoFormData } from '@/types/todo.types';
 import {
   ValidationErrors,
   sanitizeInput,
   validateTodoForm,
-} from '../../../utils/validation';
-import Button from '../../atoms/button/Button';
+} from '@/utils/validation';
 
 type TodoFormProps = {
   onSubmit: (data: TodoFormData) => void;

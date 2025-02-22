@@ -27,8 +27,8 @@
  * @param {Function} props.onToggleComplete - Optional callback when completion status is toggled
  */
 
-import { Todo } from '../../../types/todo.types';
-import Button from '../button/Button';
+import Button from '@/components/atoms/button/Button';
+import { Todo } from '@/types/todo.types';
 
 type TodoItemProps = {
   todo: Todo;

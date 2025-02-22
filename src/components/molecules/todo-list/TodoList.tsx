@@ -30,9 +30,9 @@
  * @param {Function} props.onToggleComplete - Callback when completion is toggled for a todo
  */
 
-import { Todo } from '../../../types/todo.types';
-import Spinner from '../../atoms/spinner/Spinner';
-import TodoItem from '../../atoms/todo-item/TodoItem';
+import Spinner from '@/components/atoms/spinner/Spinner';
+import TodoItem from '@/components/atoms/todo-item/TodoItem';
+import { Todo } from '@/types/todo.types';
 
 type TodoListProps = {
   loading: boolean;

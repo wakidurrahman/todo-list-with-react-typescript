@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import TodoApp from './TodoApp';
 
 // Mock localStorage utility functions
-jest.mock('../../../utils/storage', () => ({
+jest.mock('@/utils/storage', () => ({
   getTodos: jest.fn(),
   addTodo: jest.fn(),
   updateTodoInAPI: jest.fn(),
@@ -13,7 +13,7 @@ jest.mock('../../../utils/storage', () => ({
 
 // Add this line after the mock definition
 const { getTodos, addTodo, updateTodoInAPI, deleteTodoInAPI } =
-  jest.requireMock('../../../utils/storage');
+  jest.requireMock('@/utils/storage');
 
 describe('TodoApp Component', () => {
   const mockTodos = [

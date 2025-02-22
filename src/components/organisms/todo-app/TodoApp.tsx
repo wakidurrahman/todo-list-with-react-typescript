@@ -22,16 +22,17 @@
 
 import { useEffect, useState } from 'react';
 
-import { AlertVariant } from '../../../types/error.types';
-import { Todo, TodoFormData } from '../../../types/todo.types';
+import TodoForm from '@/components/molecules/todo-form/TodoForm';
+import TodoList from '@/components/molecules/todo-list/TodoList';
 import {
   addTodo,
   deleteTodoInAPI,
   getTodos,
   updateTodoInAPI,
-} from '../../../utils/storage';
-import TodoForm from '../../molecules/todo-form/TodoForm';
-import TodoList from '../../molecules/todo-list/TodoList';
+} from '@/utils/storage';
+
+import type { AlertVariant } from '@/types/error.types';
+import type { Todo, TodoFormData } from '@/types/todo.types';
 
 type TodoAppProps = {
   onError: (message: string, variant?: AlertVariant, timeout?: number) => void;

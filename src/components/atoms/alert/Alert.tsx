@@ -7,8 +7,9 @@
 
 import { useEffect, useState } from 'react';
 
-import { AlertVariant } from '../../../types/error.types';
-import Button from '../button/Button';
+import Button from '@/components/atoms/button/Button';
+import { AlertVariant } from '@/types/error.types';
+
 type AlertProps = {
   dismissible?: boolean;
   message: React.ReactNode;

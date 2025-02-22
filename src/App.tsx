@@ -1,7 +1,7 @@
-import Alert from './components/atoms/alert/Alert';
-import ErrorBoundary from './components/molecules/error-boundary/ErrorBoundary';
-import TodoApp from './components/organisms/todo-app/TodoApp';
-import useError from './hooks/useError';
+import Alert from '@/components/atoms/alert/Alert';
+import ErrorBoundary from '@/components/molecules/error-boundary/ErrorBoundary';
+import TodoApp from '@/components/organisms/todo-app/TodoApp';
+import useError from '@/hooks/useError';
 
 function App() {
   const { error, setError, clearError } = useError();

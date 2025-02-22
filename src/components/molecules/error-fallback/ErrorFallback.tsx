@@ -5,8 +5,8 @@
  * It shows the error message and provides a way to recover.
  */
 
-import { ErrorFallbackProps } from '../../../types/error.types';
-import Alert from '../../atoms/alert/Alert';
+import Alert from '@/components/atoms/alert/Alert';
+import { ErrorFallbackProps } from '@/types/error.types';
 
 const ErrorFallback = ({ error, resetErrorBoundary }: ErrorFallbackProps) => {
   return (

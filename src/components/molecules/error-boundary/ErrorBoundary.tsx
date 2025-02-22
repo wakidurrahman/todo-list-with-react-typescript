@@ -7,11 +7,8 @@
 
 import { useEffect, useState } from 'react';
 
-import {
-  ErrorBoundaryProps,
-  ErrorBoundaryState,
-} from '../../../types/error.types';
-import ErrorFallback from '../error-fallback/ErrorFallback';
+import ErrorFallback from '@/components/molecules/error-fallback/ErrorFallback';
+import { ErrorBoundaryProps, ErrorBoundaryState } from '@/types/error.types';
 
 const ErrorBoundary = ({ children, fallback }: ErrorBoundaryProps) => {
   const [errorState, setErrorState] = useState<ErrorBoundaryState>({

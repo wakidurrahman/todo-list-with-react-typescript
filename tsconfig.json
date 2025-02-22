@@ -30,6 +30,12 @@
     "checkJs": false,
     "forceConsistentCasingInFileNames": true,
 
+    /* Path Aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+
     "esModuleInterop": true,
     "types": ["jest", "node", "@testing-library/jest-dom"]
   },

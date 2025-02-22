@@ -204,15 +204,35 @@ Now your project is set up with production-ready linting and type checking. Here
 ## File Structure
 
 ```
+
 src/
 ├── components/
-│ ├── TodoList.tsx
-│ ├── TodoItem.tsx
-│ └── AddTodo.tsx
-├── styles/
-│ └── main.scss
+│ ├── atoms/
+│ │ ├── alert/
+│ │ │ ├── Alert.tsx
+│ │ │ └── Alert.test.tsx
+│ │ └── todo-item/
+│ │     ├── TodoItem.tsx
+│ │     └── TodoItem.test.tsx
+│ ├── molecules/
+│ │ ├── error-boundary/
+│ │ │ ├── ErrorBoundary.tsx
+│ │ │ └── ErrorBoundary.test.tsx
+│ │ ├── error-fallback/
+│ │ │ ├── ErrorFallback.tsx
+│ │ │ └── ErrorFallback.test.tsx
+│ │ └── todo-form/
+│ │     ├── TodoForm.tsx
+│ │     └── TodoForm.test.tsx
+│ └── organisms/
+│     └── todo-app/
+│         ├── TodoApp.tsx
+│         └── TodoApp.test.tsx
+├── hooks/
+│ └── useError.ts
 ├── types/
-│ └── todo.ts
+│ ├── error.types.ts
+│ └── todo.types.ts
 ├── App.tsx
 └── main.tsx
 
@@ -255,6 +275,8 @@ npm run test:watch
 - [x] ❌ Delete Todo: Remove a task from the list.
 - [x] 📃 View Todo List: Display all tasks.
 - [x] 💾 Local Storage Persistence: Save and load todos from local storage.
+- [x] 💾 Jsonplaceholder API Persistence: Save and load todos from Jsonplaceholder API.
+- [x] 💾 In-memory database Persistence: Save and load todos from In-memory database.
 
 ### 🚀 Additional Features (To Enhance Functionality)
 
