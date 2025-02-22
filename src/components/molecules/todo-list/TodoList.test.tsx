@@ -25,14 +25,26 @@ describe('TodoList Component', () => {
   describe('Snapshots', () => {
     it('renders list with todos correctly', () => {
       const { container } = render(
-        <TodoList todos={mockTodos} onEdit={() => {}} onDelete={() => {}} />
+        <TodoList
+          todos={mockTodos}
+          loading={false}
+          onEdit={() => {}}
+          onDelete={() => {}}
+          onToggleComplete={() => {}}
+        />
       );
       expect(container).toMatchSnapshot();
     });
 
     it('renders empty list correctly', () => {
       const { container } = render(
-        <TodoList todos={[]} onEdit={() => {}} onDelete={() => {}} />
+        <TodoList
+          todos={[]}
+          loading={false}
+          onEdit={() => {}}
+          onDelete={() => {}}
+          onToggleComplete={() => {}}
+        />
       );
       expect(container).toMatchSnapshot();
     });
@@ -44,7 +56,13 @@ describe('TodoList Component', () => {
 
     it('displays all todos in the list', () => {
       render(
-        <TodoList todos={mockTodos} onEdit={() => {}} onDelete={() => {}} />
+        <TodoList
+          todos={mockTodos}
+          loading={false}
+          onEdit={() => {}}
+          onDelete={() => {}}
+          onToggleComplete={() => {}}
+        />
       );
 
       mockTodos.forEach((todo) => {
@@ -56,7 +74,13 @@ describe('TodoList Component', () => {
     it('calls onEdit with correct todo when edit button is clicked', async () => {
       const handleEdit = jest.fn();
       render(
-        <TodoList todos={mockTodos} onEdit={handleEdit} onDelete={() => {}} />
+        <TodoList
+          todos={mockTodos}
+          loading={false}
+          onEdit={handleEdit}
+          onDelete={() => {}}
+          onToggleComplete={() => {}}
+        />
       );
 
       const editButtons = screen.getAllByRole('button', { name: /edit/i });
@@ -68,7 +92,13 @@ describe('TodoList Component', () => {
     it('calls onDelete with correct id when delete button is clicked', async () => {
       const handleDelete = jest.fn();
       render(
-        <TodoList todos={mockTodos} onEdit={() => {}} onDelete={handleDelete} />
+        <TodoList
+          todos={mockTodos}
+          loading={false}
+          onEdit={() => {}}
+          onDelete={handleDelete}
+          onToggleComplete={() => {}}
+        />
       );
 
       const deleteButtons = screen.getAllByRole('button', { name: /delete/i });
@@ -76,23 +106,20 @@ describe('TodoList Component', () => {
 
       expect(handleDelete).toHaveBeenCalledWith(mockTodos[1].id);
     });
-
     it('displays "No todos found" message when list is empty', () => {
-      render(<TodoList todos={[]} onEdit={() => {}} onDelete={() => {}} />);
+      render(
+        <TodoList
+          todos={[]}
+          loading={false}
+          onEdit={() => {}}
+          onDelete={() => {}}
+          onToggleComplete={() => {}}
+        />
+      );
 
       expect(
         screen.getByText(/no todos yet. add your first todo!/i)
       ).toBeInTheDocument();
     });
-
-    // it('renders todos in correct order (newest first)', () => {
-    //   render(
-    //     <TodoList todos={mockTodos} onEdit={() => {}} onDelete={() => {}} />
-    //   );
-
-    //   const todoElements = screen.getAllByTestId('todo-card');
-    //   expect(todoElements[0]).toHaveTextContent(mockTodos[0].title);
-    //   expect(todoElements[1]).toHaveTextContent(mockTodos[1].title);
-    // });
   });
 });

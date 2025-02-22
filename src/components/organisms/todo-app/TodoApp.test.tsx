@@ -58,14 +58,24 @@ describe('TodoApp Component', () => {
 
   // Snapshot Tests
   describe('Snapshots', () => {
-    it('renders correctly with todos', () => {
+    it('renders correctly with todos', async () => {
       const { container } = render(<TodoApp onError={mockOnError} />);
+      // Wait for todos to load before taking snapshot
+      await waitFor(() => {
+        expect(screen.getByText('First Todo')).toBeInTheDocument();
+      });
       expect(container).toMatchSnapshot();
     });
 
-    it('renders correctly without todos', () => {
+    it('renders correctly without todos', async () => {
       (getTodos as jest.Mock).mockResolvedValue([]);
       const { container } = render(<TodoApp onError={mockOnError} />);
+      // Wait for loading state to finish
+      await waitFor(() => {
+        expect(
+          screen.getByText('No todos yet. Add your first todo!')
+        ).toBeInTheDocument();
+      });
       expect(container).toMatchSnapshot();
     });
   });
@@ -96,7 +106,7 @@ describe('TodoApp Component', () => {
       await user.type(titleInput, 'New Todo');
       await user.type(descriptionInput, 'New Todo Description');
 
-      const addButton = screen.getByRole('button', { name: /add/i });
+      const addButton = screen.getByRole('button', { name: /add todo/i });
       await user.click(addButton);
 
       expect(addTodo).toHaveBeenCalledWith({
@@ -122,7 +132,7 @@ describe('TodoApp Component', () => {
       await user.type(titleInput, 'New Todo');
       await user.type(descriptionInput, 'New Todo Description');
 
-      const addButton = screen.getByRole('button', { name: /add/i });
+      const addButton = screen.getByRole('button', { name: /add todo/i });
       await user.click(addButton);
 
       await waitFor(() => {
@@ -140,9 +150,7 @@ describe('TodoApp Component', () => {
         expect(screen.getByText('First Todo')).toBeInTheDocument();
       });
 
-      const deleteButton = screen.getAllByRole('button', {
-        name: /delete/i,
-      })[0];
+      const deleteButton = screen.getByTestId('delete-todo-1');
       await user.click(deleteButton);
 
       expect(deleteTodoInAPI).toHaveBeenCalledWith('1');
@@ -166,9 +174,7 @@ describe('TodoApp Component', () => {
         expect(screen.getByText('First Todo')).toBeInTheDocument();
       });
 
-      const deleteButton = screen.getAllByRole('button', {
-        name: /delete/i,
-      })[0];
+      const deleteButton = screen.getByTestId('delete-todo-1');
       await user.click(deleteButton);
 
       await waitFor(() => {
@@ -187,9 +193,7 @@ describe('TodoApp Component', () => {
         expect(screen.getByText('First Todo')).toBeInTheDocument();
       });
 
-      const deleteButton = screen.getAllByRole('button', {
-        name: /delete/i,
-      })[0];
+      const deleteButton = screen.getByTestId('delete-todo-1');
       await user.click(deleteButton);
 
       await waitFor(() => {
@@ -207,7 +211,7 @@ describe('TodoApp Component', () => {
         expect(screen.getByText('First Todo')).toBeInTheDocument();
       });
 
-      const checkbox = screen.getByLabelText('First Todo');
+      const checkbox = screen.getByRole('checkbox', { name: /first todo/i });
       await user.click(checkbox);
 
       expect(updateTodoInAPI).toHaveBeenCalledWith('1', {
@@ -234,7 +238,7 @@ describe('TodoApp Component', () => {
         expect(screen.getByText('First Todo')).toBeInTheDocument();
       });
 
-      const checkbox = screen.getByLabelText('First Todo');
+      const checkbox = screen.getByRole('checkbox', { name: /first todo/i });
       await user.click(checkbox);
 
       await waitFor(() => {
@@ -242,6 +246,23 @@ describe('TodoApp Component', () => {
           'Failed to update todo status. Please try again.',
           'danger'
         );
+      });
+    });
+
+    it('shows loading spinner while fetching todos', () => {
+      render(<TodoApp onError={mockOnError} />);
+      expect(screen.getByRole('status')).toBeInTheDocument();
+      expect(screen.getByText('Loading...')).toBeInTheDocument();
+    });
+
+    it('shows empty state message when no todos exist', async () => {
+      (getTodos as jest.Mock).mockResolvedValue([]);
+      render(<TodoApp onError={mockOnError} />);
+
+      await waitFor(() => {
+        expect(
+          screen.getByText('No todos yet. Add your first todo!')
+        ).toBeInTheDocument();
       });
     });
   });
