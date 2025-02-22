@@ -31,7 +31,7 @@ import React from 'react';
 
 import Button from '@/components/atoms/button/Button';
 import Checkbox from '@/components/atoms/checkbox/Checkbox';
-import { Todo } from '@/types/todo.types';
+import { Priority, Todo } from '@/types/todo.types';
 
 type TodoItemProps = {
   todo: Todo;
@@ -40,16 +40,25 @@ type TodoItemProps = {
   onToggleComplete?: (id: string) => void;
 };
 
+// Add priority colors
+const priorityColors: Record<Priority, string> = {
+  high: 'danger',
+  medium: 'warning',
+  low: 'info',
+};
+
 const TodoItem: React.FC<TodoItemProps> = ({
   todo,
   onEdit,
   onDelete,
   onToggleComplete,
 }) => {
+  const isOverdue = todo.dueDate && new Date(todo.dueDate) < new Date();
+
   return (
-    <div className="card mb-3">
+    <div className="card mb-1">
       <div className="card-body">
-        <div className="row align-items-start g-3">
+        <div className="row align-items-start g-2">
           {/* Checkbox and Content Column */}
           <div className="col">
             <Checkbox
@@ -59,13 +68,33 @@ const TodoItem: React.FC<TodoItemProps> = ({
               value={todo.id}
             >
               <div className="ms-2">
-                <h5 className="card-title mb-1 text-break">{todo.title}</h5>
-                <h6 className="card-subtitle mb-2 text-body-secondary">
+                <div className="d-flex align-items-center gap-2 mb-3">
+                  <h5 className="card-title mb-0 text-break">{todo.title}</h5>
+                  <span
+                    className={`badge bg-${priorityColors[todo.priority as Priority]}`}
+                  >
+                    {todo.priority}
+                  </span>
+                </div>
+
+                <h6 className="card-subtitle text-body-secondary mb-2">
                   <i className="bi bi-clock me-1"></i>
-                  Last updated: {new Date(todo.updatedAt).toLocaleString()}
+                  Updated:{' '}
+                  {todo.updatedAt
+                    ? new Date(todo.updatedAt).toLocaleString()
+                    : 'Never'}
                 </h6>
+                {todo.dueDate && (
+                  <h6
+                    className={`card-subtitle mb-0 ${isOverdue ? 'text-danger' : 'text-body-secondary'}`}
+                  >
+                    <i className="bi bi-calendar-event me-1"></i>
+                    Due: {new Date(todo.dueDate).toLocaleString()}
+                  </h6>
+                )}
+
                 {todo.description && (
-                  <p className="card-text text-break mb-0">
+                  <p className="card-text text-break mt-2 mb-0">
                     {todo.description}
                   </p>
                 )}

@@ -22,6 +22,7 @@
 
 import { useEffect, useState } from 'react';
 
+import TodoFilters from '@/components/molecules/todo-filters/TodoFilters';
 import TodoForm from '@/components/molecules/todo-form/TodoForm';
 import TodoList from '@/components/molecules/todo-list/TodoList';
 import {
@@ -32,7 +33,12 @@ import {
 } from '@/utils/storage';
 
 import type { AlertVariant } from '@/types/error.types';
-import type { Todo, TodoFormData } from '@/types/todo.types';
+import type {
+  FilterStatus,
+  SortBy,
+  Todo,
+  TodoFormData,
+} from '@/types/todo.types';
 
 type TodoAppProps = {
   onError: (message: string, variant?: AlertVariant, timeout?: number) => void;
@@ -42,6 +48,9 @@ const TodoApp = ({ onError }: TodoAppProps) => {
   const [loading, setLoading] = useState(true);
   const [todos, setTodos] = useState<Todo[]>([]);
   const [todoBeingEdited, setTodoBeingEdited] = useState<Todo | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState<SortBy>('dueDate');
+  const [filterStatus, setFilterStatus] = useState<FilterStatus>('all');
 
   useEffect(() => {
     const handleLoadTodos = async () => {
@@ -60,7 +69,10 @@ const TodoApp = ({ onError }: TodoAppProps) => {
 
   const handleAddTodo = async (data: TodoFormData) => {
     try {
-      const newTodo = await addTodo(data);
+      const newTodo = await addTodo({
+        ...data,
+        dueDate: data.dueDate ? new Date(data.dueDate) : undefined,
+      });
       setTodos((prev) => [...prev, newTodo]);
       onError('Todo added successfully!', 'success', 3000);
     } catch (error) {
@@ -70,9 +82,11 @@ const TodoApp = ({ onError }: TodoAppProps) => {
 
   const handleUpdateTodo = async (data: TodoFormData) => {
     if (!todoBeingEdited) return;
-
     try {
-      const updatedTodo = await updateTodoInAPI(todoBeingEdited.id, data);
+      const updatedTodo = await updateTodoInAPI(todoBeingEdited.id, {
+        ...data,
+        dueDate: data.dueDate ? new Date(data.dueDate) : undefined,
+      });
       if (!updatedTodo) {
         onError('Todo not found or already deleted.', 'warning');
         return;
@@ -143,6 +157,49 @@ const TodoApp = ({ onError }: TodoAppProps) => {
     }
   };
 
+  const getFilteredAndSortedTodos = () => {
+    return todos
+      .filter((todo) => {
+        if (filterStatus === 'completed') return todo.completed;
+        if (filterStatus === 'pending') return !todo.completed;
+        return true;
+      })
+      .filter((todo) => {
+        if (!searchQuery) return true;
+        const searchLower = searchQuery.toLowerCase();
+        return (
+          todo.title.toLowerCase().includes(searchLower) ||
+          todo.description?.toLowerCase().includes(searchLower)
+        );
+      })
+      .sort((a, b) => {
+        switch (sortBy) {
+          case 'dueDate':
+            return (
+              new Date(a.dueDate || '').getTime() -
+              new Date(b.dueDate || '').getTime()
+            );
+          case 'priority':
+            const priorityOrder: Record<string, number> = {
+              high: 0,
+              medium: 1,
+              low: 2,
+            };
+            return (
+              priorityOrder[a.priority || 'low'] -
+              priorityOrder[b.priority || 'low']
+            );
+          case 'createdAt':
+            return (
+              new Date(b.createdAt || '').getTime() -
+              new Date(a.createdAt || '').getTime()
+            );
+          default:
+            return 0;
+        }
+      });
+  };
+
   return (
     <div className="container py-4">
       <h1 className="text-center mb-4">Todo List Application</h1>
@@ -160,9 +217,17 @@ const TodoApp = ({ onError }: TodoAppProps) => {
           </div>
         </div>
         <div className="col-12 col-sm-7 col-md-6">
+          <TodoFilters
+            searchQuery={searchQuery}
+            sortBy={sortBy}
+            filterStatus={filterStatus}
+            onSearchChange={setSearchQuery}
+            onSortChange={setSortBy}
+            onFilterChange={setFilterStatus}
+          />
           <TodoList
             loading={loading}
-            todos={todos}
+            todos={getFilteredAndSortedTodos()}
             onEdit={handleEditClick}
             onDelete={handleDeleteTodo}
             onToggleComplete={handleToggleComplete}

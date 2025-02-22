@@ -1,0 +1,84 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "title": "Complete Project Proposal",
+      "description": "Draft and finalize the Q2 project proposal for client review",
+      "completed": false,
+      "createdAt": "2024-02-20T10:00:00Z",
+      "updatedAt": "2024-02-21T15:30:00Z",
+      "dueDate": "2024-03-01T23:59:59Z",
+      "priority": "high"
+    },
+    {
+      "id": "2",
+      "title": "Review Code Changes",
+      "description": "Review pull requests and merge approved changes",
+      "completed": true,
+      "createdAt": "2024-02-19T09:00:00Z",
+      "updatedAt": "2024-02-20T14:20:00Z",
+      "dueDate": "2024-02-22T17:00:00Z",
+      "priority": "medium"
+    },
+    {
+      "id": "3",
+      "title": "Update Documentation",
+      "description": "Update API documentation with new endpoints",
+      "completed": false,
+      "createdAt": "2024-02-21T11:00:00Z",
+      "updatedAt": "2024-02-21T11:00:00Z",
+      "dueDate": "2024-02-25T18:00:00Z",
+      "priority": "low"
+    },
+    {
+      "id": "4",
+      "title": "Team Meeting",
+      "description": "Weekly team sync-up and sprint planning",
+      "completed": false,
+      "createdAt": "2024-02-22T08:00:00Z",
+      "updatedAt": "2024-02-22T08:00:00Z",
+      "dueDate": "2024-02-23T10:00:00Z",
+      "priority": "high"
+    },
+    {
+      "id": "5",
+      "title": "Bug Fixes",
+      "description": "Fix reported issues in the production environment",
+      "completed": false,
+      "createdAt": "2024-02-21T13:00:00Z",
+      "updatedAt": "2024-02-22T09:15:00Z",
+      "dueDate": "2024-02-24T17:00:00Z",
+      "priority": "high"
+    },
+    {
+      "id": "6",
+      "title": "Write Unit Tests",
+      "description": "Increase test coverage for core components",
+      "completed": false,
+      "createdAt": "2024-02-20T15:00:00Z",
+      "updatedAt": "2024-02-21T10:45:00Z",
+      "dueDate": "2024-02-28T17:00:00Z",
+      "priority": "medium"
+    },
+    {
+      "id": "7",
+      "title": "Update Dependencies",
+      "description": "Update project dependencies to latest stable versions",
+      "completed": true,
+      "createdAt": "2024-02-19T14:00:00Z",
+      "updatedAt": "2024-02-20T16:30:00Z",
+      "dueDate": "2024-02-21T17:00:00Z",
+      "priority": "low"
+    },
+    {
+      "id": "8",
+      "title": "Performance Optimization",
+      "description": "Optimize application performance and loading times",
+      "completed": false,
+      "createdAt": "2024-02-22T09:00:00Z",
+      "updatedAt": "2024-02-22T09:00:00Z",
+      "dueDate": "2024-03-05T17:00:00Z",
+      "priority": "medium"
+    }
+  ]
+}

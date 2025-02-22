@@ -5,6 +5,7 @@
  */
 
 import { env } from '../config/env';
+import { getMockTodos } from '../services/mockData';
 import {
   createTodo,
   deleteTodo,
@@ -20,7 +21,16 @@ const STORAGE_KEY = 'todos';
 const getLocalTodos = (): Todo[] => {
   try {
     const todosJson = localStorage.getItem(STORAGE_KEY);
-    return todosJson ? JSON.parse(todosJson) : [];
+
+    // If no todos in localStorage or empty array, return mock data
+    if (!todosJson || todosJson === '[]') {
+      console.log('No todos in localStorage, returning mock data');
+      const mockTodos = getMockTodos();
+      saveLocalTodos(mockTodos);
+      return mockTodos;
+    }
+    console.log('todosJson---', typeof todosJson);
+    return JSON.parse(todosJson);
   } catch (error) {
     throw new Error('Failed to read todos from localStorage');
   }

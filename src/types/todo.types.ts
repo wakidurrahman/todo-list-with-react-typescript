@@ -12,9 +12,13 @@ export type Todo = {
   /** Status of the todo item */
   completed?: boolean;
   /** Date when the todo was created */
-  createdAt: Date;
+  createdAt?: Date;
   /** Date when the todo was last updated */
-  updatedAt: Date;
+  updatedAt?: Date;
+  /** Due date of the todo item */
+  dueDate?: Date;
+  /** Priority of the todo item */
+  priority?: string;
 };
 
 /**
@@ -26,6 +30,10 @@ export type TodoFormData = {
   title: string;
   /** Detailed description of the todo item */
   description: string;
+  /** Due date of the todo item */
+  dueDate?: string;
+  /** Priority of the todo item */
+  priority?: string;
 };
 
 export type TodoItemProps = {
@@ -41,3 +49,7 @@ export type TodoListProps = {
   onDelete: (id: number) => void;
   onToggleComplete: (id: number) => void;
 };
+
+export type Priority = 'low' | 'medium' | 'high';
+export type SortBy = 'dueDate' | 'priority' | 'createdAt';
+export type FilterStatus = 'all' | 'completed' | 'pending';

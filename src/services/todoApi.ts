@@ -1,10 +1,15 @@
-import { Todo } from '../types/todo.types';
+import { Todo } from '@/types/todo.types';
+
+import { getMockTodos } from './mockData';
 
 const API_URL = import.meta.env.VITE_API_URL;
 const USE_API = import.meta.env.VITE_USE_API === 'true';
 
 export const fetchTodos = async (): Promise<Todo[]> => {
-  if (!USE_API) return [];
+  if (!USE_API) {
+    // Return mock data when API is disabled
+    return getMockTodos();
+  }
 
   const response = await fetch(`${API_URL}/todos`);
   if (!response.ok) throw new Error('Failed to fetch todos');
@@ -13,10 +18,12 @@ export const fetchTodos = async (): Promise<Todo[]> => {
   return data.map((todo: Todo) => ({
     id: String(todo.id),
     title: todo.title,
-    description: 'Demo description',
+    description: todo.description || 'Demo description',
     completed: todo.completed,
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    createdAt: todo.createdAt ? new Date(todo.createdAt) : new Date(),
+    updatedAt: todo.updatedAt ? new Date(todo.updatedAt) : new Date(),
+    dueDate: todo.dueDate ? new Date(todo.dueDate) : undefined,
+    priority: todo.priority,
   }));
 };
 
