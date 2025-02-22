@@ -1,3 +1,35 @@
+/**
+ * TodoList Component
+ *
+ * A React component that displays a list of todo items with loading and empty states.
+ * Features include:
+ * - Loading spinner while data is being fetched
+ * - Empty state message when no todos exist
+ * - List of TodoItem components with consistent spacing
+ * - Passes through edit, delete and toggle complete handlers
+ * - Responsive layout with Bootstrap
+ * - Accessibility features
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <TodoList
+ *   loading={false}
+ *   todos={todoItems}
+ *   onEdit={handleEdit}
+ *   onDelete={handleDelete}
+ *   onToggleComplete={handleToggleComplete}
+ * />
+ * ```
+ *
+ * @param {Object} props - Component props
+ * @param {boolean} props.loading - Loading state flag
+ * @param {Todo[]} props.todos - Array of todo items to display
+ * @param {Function} props.onEdit - Callback when edit is triggered for a todo
+ * @param {Function} props.onDelete - Callback when delete is triggered for a todo
+ * @param {Function} props.onToggleComplete - Callback when completion is toggled for a todo
+ */
+
 import { Todo } from '../../../types/todo.types';
 import TodoItem from '../../atoms/todo-item/TodoItem';
 

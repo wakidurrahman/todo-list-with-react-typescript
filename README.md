@@ -1,4 +1,4 @@
-# Todo List application
+# Todo List application with React and TypeScript
 
 This project is mainly for studying AI and practicing related concepts. where I will try to implement some apps with AI.
 
@@ -66,11 +66,26 @@ This project is mainly for studying AI and practicing related concepts. where I 
 
 - Local storage
 - Jsonplaceholder api
-- Inmemory database
+- In-memory database
 
 ---
 
-# React + TypeScript + Vite
+## React + TypeScript + Vite
+
+- [x] ✅ .env file
+- [x] ✅ .cursorrules file
+- [x] ✅ ESLint Configuration
+- [x] ✅ Prettier Configuration
+- [x] ✅ TypeScript Configuration
+- [x] ✅ Testing Setup
+- [x] ✅ Error Handling
+- [x] ✅ Error Boundaries
+- [x] ✅ Toast Notification
+- [x] ✅ Loading State
+- [x] ✅ Tooltip
+- [x] ✅ File Structure
+- [x] ✅ Run the project
+- [x] ✅ Todo List project Features
 
 Now your project is set up with production-ready linting and type checking. Here's what we've added:
 
@@ -124,6 +139,67 @@ Now your project is set up with production-ready linting and type checking. Here
 - Success states
 - Utility functions
 - Edge cases
+
+7. ✅ Error Handling
+
+- Error Boundaries
+- Error Fallback
+- Error Notification
+- Error Handling
+
+### Features and Benefits:
+
+1. Error Boundary:
+
+- Catches JavaScript errors anywhere in the component tree
+- Prevents app crashes
+- Shows user-friendly fallback UI
+- Development mode stack traces
+- Easy recovery with "Try Again" button
+
+2. Alert Component:
+
+- Supports all Bootstrap alert variants
+- Customizable timeout
+- Dismissible option
+- Accessibility features (ARIA attributes)
+- Fade animation
+- Supports HTML/JSX content
+
+3.  useError Hook:
+
+- Easy error state management
+- Automatic timeout handling
+- Multiple alert variants
+- Type-safe implementation
+- Reusable across components
+
+### Best Practices Implemented:
+
+1. Accessibility:
+
+- ARIA roles and labels
+- Keyboard navigation support
+- Screen reader friendly
+
+2. Type Safety:
+
+- Full TypeScript support
+- Proper type definitions
+- Type inference
+
+3. Error Handling:
+
+- Graceful error recovery
+- Development vs production error details
+- Proper error logging
+
+4. Component Design:
+
+- Reusable components
+- Customizable props
+- Bootstrap integration
+- Clean and maintainable code
 
 ## File Structure
 

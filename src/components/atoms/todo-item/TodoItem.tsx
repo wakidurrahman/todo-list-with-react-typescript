@@ -1,13 +1,30 @@
 /**
- * TodoItem component displays a single todo item in a card format.
- * It shows the todo's title, description, and last updated time.
- * Includes buttons for editing and deleting the todo.
+ * TodoItem Component
+ *
+ * A React component that displays a single todo item in a card format with the following features:
+ * - Shows todo title, description, and last updated timestamp.
+ * - Checkbox to toggle completion status.
+ * - Edit and Delete action buttons.
+ * - Responsive layout with Bootstrap.
+ * - Accessibility features.
+ * - Visual indication of completed todos.
  *
  * @component
+ * @example
+ * ```tsx
+ * <TodoItem
+ *   todo={todoItem}
+ *   onEdit={handleEdit}
+ *   onDelete={handleDelete}
+ *   onToggleComplete={handleToggleComplete}
+ * />
+ * ```
+ *
  * @param {Object} props - Component props
  * @param {Todo} props.todo - The todo item to display
- * @param {Function} props.onEdit - Callback function when edit button is clicked
- * @param {Function} props.onDelete - Callback function when delete button is clicked
+ * @param {Function} props.onEdit - Callback when edit button is clicked
+ * @param {Function} props.onDelete - Callback when delete button is clicked
+ * @param {Function} props.onToggleComplete - Optional callback when completion status is toggled
  */
 
 import { Todo } from '../../../types/todo.types';

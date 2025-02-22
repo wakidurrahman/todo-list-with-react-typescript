@@ -22,6 +22,7 @@
 
 import { useEffect, useState } from 'react';
 
+import useError from '../../../hooks/useError';
 import { Todo, TodoFormData } from '../../../types/todo.types';
 import {
   addTodo,
@@ -29,6 +30,7 @@ import {
   getTodos,
   updateTodo,
 } from '../../../utils/storage';
+import Alert from '../../atoms/alert/Alert';
 import TodoForm from '../../molecules/todo-form/TodoForm';
 import TodoList from '../../molecules/todo-list/TodoList';
 
@@ -36,6 +38,7 @@ const TodoApp = () => {
   const [loading, setLoading] = useState(true);
   const [todos, setTodos] = useState<Todo[]>([]);
   const [todoBeingEdited, setTodoBeingEdited] = useState<Todo | null>(null);
+  const { error, setError, clearError } = useError();
 
   useEffect(() => {
     const handleLoadTodos = async () => {
@@ -44,20 +47,21 @@ const TodoApp = () => {
         setTodos(todos);
       } catch (error) {
         setLoading(false);
-        console.error('Failed to load todos:', error);
+        setError('Failed to load todos. Please try again later.', 'danger');
       } finally {
         setLoading(false);
       }
     };
     handleLoadTodos();
-  }, []);
+  }, [setError]);
 
   const handleAddTodo = async (data: TodoFormData) => {
     try {
       const newTodo = await addTodo(data);
       setTodos((prev) => [...prev, newTodo]);
+      setError('Todo added successfully!', 'success', 3000);
     } catch (error) {
-      console.error('Failed to add todo:', error);
+      setError('Failed to add todo. Please try again.', 'danger');
     }
   };
 
@@ -66,7 +70,10 @@ const TodoApp = () => {
 
     try {
       const updatedTodo = await updateTodo(todoBeingEdited.id, data);
-      if (!updatedTodo) return;
+      if (!updatedTodo) {
+        setError('Todo not found or already deleted.', 'warning');
+        return;
+      }
 
       setTodos((prev) =>
         prev.map((todo) =>
@@ -74,19 +81,24 @@ const TodoApp = () => {
         )
       );
       setTodoBeingEdited(null);
+      setError('Todo updated successfully!', 'success', 3000);
     } catch (error) {
-      console.error('Failed to update todo:', error);
+      setError('Failed to update todo. Please try again.', 'danger');
     }
   };
 
   const handleDeleteTodo = async (id: string) => {
     try {
       const isDeleted = await deleteTodo(id);
-      if (!isDeleted) return;
+      if (!isDeleted) {
+        setError('Todo not found or already deleted.', 'warning');
+        return;
+      }
 
       setTodos((prev) => prev.filter((todo) => todo.id !== id));
+      setError('Todo deleted successfully!', 'success', 3000);
     } catch (error) {
-      console.error('Failed to delete todo:', error);
+      setError('Failed to delete todo. Please try again.', 'danger');
     }
   };
 
@@ -100,25 +112,45 @@ const TodoApp = () => {
 
   const handleToggleComplete = async (id: string) => {
     const todo = todos.find((item) => item.id === id);
-    if (!todo) return;
+    if (!todo) {
+      setError('Todo not found.', 'warning');
+      return;
+    }
 
     try {
       const updatedTodo = await updateTodo(id, {
         ...todo,
         completed: !todo.completed,
       });
-      if (!updatedTodo) return;
+      if (!updatedTodo) {
+        setError('Failed to update todo status.', 'warning');
+        return;
+      }
 
       setTodos((prev) =>
         prev.map((item) => (item.id === id ? updatedTodo : item))
       );
+      setError(
+        `Todo marked as ${updatedTodo.completed ? 'completed' : 'incomplete'}!`,
+        'success',
+        3000
+      );
     } catch (error) {
-      console.error('Failed to toggle todo completion:', error);
+      setError('Failed to update todo status. Please try again.', 'danger');
     }
   };
 
   return (
     <div className="container py-4">
+      {error.show && (
+        <Alert
+          message={error.message}
+          variant={error.variant}
+          show={error.show}
+          onClose={clearError}
+          timeout={error.timeout}
+        />
+      )}
       <h1 className="text-center mb-4">Todo List Application</h1>
       <div className="row">
         <div className="col-12 col-sm-5 col-md-6">

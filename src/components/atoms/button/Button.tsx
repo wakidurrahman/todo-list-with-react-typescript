@@ -11,7 +11,7 @@ type ButtonProps = {
   /** Size of the button, defaults to 'md' */
   size?: 'sm' | 'md' | 'lg';
   /** Content of the button */
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /** Type of the button, defaults to 'button' */
   type?: 'button' | 'submit';
   /** Whether the button is disabled */
@@ -28,6 +28,7 @@ function Button({
   type = 'button',
   disabled = false,
   className = '',
+  ...rest
 }: ButtonProps) {
   // Combine base classes with additional classes
   const baseClass = `btn btn-${variant} btn-${size} ${className}`.trim();
@@ -38,6 +39,7 @@ function Button({
       className={baseClass}
       onClick={onClick}
       disabled={disabled}
+      {...rest}
     >
       {children}
     </button>
