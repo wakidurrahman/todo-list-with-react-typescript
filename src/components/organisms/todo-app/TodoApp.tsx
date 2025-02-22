@@ -59,7 +59,7 @@ const TodoApp = () => {
     try {
       const newTodo = await addTodo(data);
       setTodos((prev) => [...prev, newTodo]);
-      setError('Todo added successfully!', 'success', 3000);
+      setError('Todo added successfully!', 'primary', 3000);
     } catch (error) {
       setError('Failed to add todo. Please try again.', 'danger');
     }
@@ -81,7 +81,7 @@ const TodoApp = () => {
         )
       );
       setTodoBeingEdited(null);
-      setError('Todo updated successfully!', 'success', 3000);
+      setError('Todo updated successfully!', 'secondary', 3000);
     } catch (error) {
       setError('Failed to update todo. Please try again.', 'danger');
     }
@@ -96,7 +96,7 @@ const TodoApp = () => {
       }
 
       setTodos((prev) => prev.filter((todo) => todo.id !== id));
-      setError('Todo deleted successfully!', 'success', 3000);
+      setError('Todo deleted successfully!', 'danger', 3000);
     } catch (error) {
       setError('Failed to delete todo. Please try again.', 'danger');
     }

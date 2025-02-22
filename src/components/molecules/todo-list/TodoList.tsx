@@ -31,6 +31,7 @@
  */
 
 import { Todo } from '../../../types/todo.types';
+import Spinner from '../../atoms/spinner/Spinner';
 import TodoItem from '../../atoms/todo-item/TodoItem';
 
 type TodoListProps = {
@@ -50,10 +51,8 @@ function TodoList({
 }: TodoListProps) {
   if (loading) {
     return (
-      <div className="d-flex justify-content-center mb-4">
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
+      <div className="d-flex justify-content-center align-items-center gap-3 flex-wrap">
+        <Spinner variant="primary" size="md" loadingText="Loading..." />
       </div>
     );
   }
