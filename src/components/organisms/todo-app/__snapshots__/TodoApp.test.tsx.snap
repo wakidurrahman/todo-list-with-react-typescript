@@ -1,0 +1,213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoApp Component Snapshots renders correctly with todos 1`] = `
+<div>
+  <div
+    class="container py-4"
+  >
+    <h1
+      class="text-center mb-4"
+    >
+      Todo List Application
+    </h1>
+    <div
+      class="row"
+    >
+      <div
+        class="col-12 col-sm-5 col-md-6"
+      >
+        <div
+          class="card p-3 mb-4"
+        >
+          <h3
+            class="mb-3"
+          >
+            Add New Todo
+          </h3>
+          <form
+            class="row g-3"
+            novalidate=""
+          >
+            <div
+              class="col-12"
+            >
+              <label
+                class="form-label"
+                for="title"
+              >
+                Title
+              </label>
+              <input
+                aria-describedby="titleFeedback"
+                aria-label="Todo title"
+                class="form-control "
+                id="title"
+                maxlength="50"
+                name="title"
+                placeholder="Enter title"
+                tabindex="0"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="col-12"
+            >
+              <label
+                class="form-label"
+                for="description"
+              >
+                Description
+              </label>
+              <textarea
+                aria-describedby="descriptionFeedback"
+                aria-label="Todo description"
+                class="form-control "
+                id="description"
+                maxlength="500"
+                name="description"
+                placeholder="Enter description"
+                rows="3"
+                tabindex="0"
+              />
+            </div>
+            <div
+              class="col-12 d-flex justify-content-center gap-2"
+            >
+              <button
+                class="btn btn-primary btn-md"
+                type="submit"
+              >
+                Add
+                 Todo
+              </button>
+              <button
+                class="btn btn-secondary btn-md"
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div
+        class="col-12 col-sm-7 col-md-6"
+      >
+        <div
+          class="alert alert-info"
+          role="alert"
+        >
+          No todos yet. Add your first todo!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TodoApp Component Snapshots renders correctly without todos 1`] = `
+<div>
+  <div
+    class="container py-4"
+  >
+    <h1
+      class="text-center mb-4"
+    >
+      Todo List Application
+    </h1>
+    <div
+      class="row"
+    >
+      <div
+        class="col-12 col-sm-5 col-md-6"
+      >
+        <div
+          class="card p-3 mb-4"
+        >
+          <h3
+            class="mb-3"
+          >
+            Add New Todo
+          </h3>
+          <form
+            class="row g-3"
+            novalidate=""
+          >
+            <div
+              class="col-12"
+            >
+              <label
+                class="form-label"
+                for="title"
+              >
+                Title
+              </label>
+              <input
+                aria-describedby="titleFeedback"
+                aria-label="Todo title"
+                class="form-control "
+                id="title"
+                maxlength="50"
+                name="title"
+                placeholder="Enter title"
+                tabindex="0"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="col-12"
+            >
+              <label
+                class="form-label"
+                for="description"
+              >
+                Description
+              </label>
+              <textarea
+                aria-describedby="descriptionFeedback"
+                aria-label="Todo description"
+                class="form-control "
+                id="description"
+                maxlength="500"
+                name="description"
+                placeholder="Enter description"
+                rows="3"
+                tabindex="0"
+              />
+            </div>
+            <div
+              class="col-12 d-flex justify-content-center gap-2"
+            >
+              <button
+                class="btn btn-primary btn-md"
+                type="submit"
+              >
+                Add
+                 Todo
+              </button>
+              <button
+                class="btn btn-secondary btn-md"
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div
+        class="col-12 col-sm-7 col-md-6"
+      >
+        <div
+          class="alert alert-info"
+          role="alert"
+        >
+          No todos yet. Add your first todo!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

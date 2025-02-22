@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoItem Component Snapshots renders todo item correctly 1`] = `
+<div>
+  <div
+    class="card text-bg-secondary"
+  >
+    <div
+      class="card-body"
+    >
+      <h5
+        class="card-title"
+      >
+        Test Todo
+      </h5>
+      <h6
+        class="card-subtitle mb-2 "
+      >
+        <i
+          class="bi bi-clock me-1"
+        />
+         Last updated:
+         
+        2/16/2024, 6:00:00 PM
+      </h6>
+      <p
+        class="card-text"
+      >
+        Test Description
+      </p>
+      <div
+        class="d-flex justify-content-end gap-2"
+      >
+        <button
+          class="btn btn-secondary btn-md d-flex align-items-center"
+          type="button"
+        >
+          <i
+            class="bi bi-pencil-square me-1"
+          />
+          Edit
+        </button>
+        <button
+          class="btn btn-danger btn-md d-flex align-items-center"
+          type="button"
+        >
+          <i
+            class="bi bi-trash me-1"
+          />
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,43 @@
+@use 'bootstrap/scss/bootstrap' as * with (
+  $primary: #0d6efd,
+  $enable-deprecation-messages: false
+);
+
+:root {
+  --bs-primary: #0d6efd;
+  --bs-btn-primary-color: #fff;
+  --bs-btn-primary-bg: var(--bs-primary);
+  --bs-btn-primary-border-color: var(--bs-primary);
+  --bs-btn-primary-hover-color: #fff;
+  --bs-btn-primary-hover-bg: #0a58ca;
+  --bs-btn-primary-hover-border-color: #0a53be;
+  --bs-btn-primary-active-color: #fff;
+  --bs-btn-primary-active-bg: #0a53be;
+  --bs-btn-primary-active-border-color: #0a58ca;
+  --bs-btn-primary-disabled-color: #fff;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+// Override Bootstrap's button styles
+.btn-primary {
+  color: var(--bs-btn-primary-color);
+  background-color: var(--bs-btn-primary-bg);
+  border-color: var(--bs-btn-primary-border-color);
+
+  &:hover {
+    color: var(--bs-btn-primary-hover-color);
+    background-color: var(--bs-btn-primary-hover-bg);
+    border-color: var(--bs-btn-primary-hover-border-color);
+  }
+
+  &:focus,
+  &:active {
+    color: var(--bs-btn-primary-active-color);
+    background-color: var(--bs-btn-primary-active-bg);
+    border-color: var(--bs-btn-primary-active-border-color);
+  }
+
+  &:disabled {
+    color: var(--bs-btn-primary-disabled-color);
+  }
+}
