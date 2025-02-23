@@ -31,45 +31,61 @@ exports[`TodoApp Component Snapshots renders correctly with todos 1`] = `
             <div
               class="col-12"
             >
-              <label
-                class="form-label"
-                for="title"
+              <div
+                class="mb-3"
               >
-                Title
-              </label>
-              <input
-                aria-describedby="titleFeedback"
-                aria-label="Todo title"
-                class="form-control "
-                id="title"
-                maxlength="50"
-                name="title"
-                placeholder="Enter title"
-                tabindex="0"
-                type="text"
-                value=""
-              />
+                <label
+                  class="form-label"
+                  for="title"
+                >
+                  Title
+                  <span
+                    class="text-danger ms-1"
+                  >
+                    *
+                  </span>
+                </label>
+                <input
+                  aria-describedby="titleFeedback"
+                  aria-label="Todo title"
+                  class="form-control"
+                  id="title"
+                  maxlength="50"
+                  name="title"
+                  placeholder="Enter title"
+                  required=""
+                  rows="3"
+                  tabindex="0"
+                  type="text"
+                  value=""
+                />
+              </div>
             </div>
             <div
               class="col-12"
             >
-              <label
-                class="form-label"
-                for="description"
+              <div
+                class="mb-3"
               >
-                Description
-              </label>
-              <textarea
-                aria-describedby="descriptionFeedback"
-                aria-label="Todo description"
-                class="form-control "
-                id="description"
-                maxlength="500"
-                name="description"
-                placeholder="Enter description"
-                rows="3"
-                tabindex="0"
-              />
+                <label
+                  class="form-label"
+                  for="description"
+                >
+                  Description
+                </label>
+                <textarea
+                  aria-describedby="descriptionFeedback"
+                  aria-label="Todo description"
+                  class="form-control"
+                  id="description"
+                  maxlength="500"
+                  name="description"
+                  placeholder="Enter description"
+                  rows="3"
+                  tabindex="0"
+                  type="text"
+                />
+              </div>
             </div>
             <div
               class="col-12 d-flex justify-content-center gap-2"
@@ -97,17 +113,304 @@ exports[`TodoApp Component Snapshots renders correctly with todos 1`] = `
         class="col-12 col-sm-7 col-md-6"
       >
         <div
-          class="d-flex justify-content-center align-items-center gap-3 flex-wrap"
+          class="card mb-3"
         >
           <div
-            class="spinner-border text-primary  "
-            role="status"
+            class="card-body"
           >
-            <span
-              class="visually-hidden"
+            <div
+              class="row g-3"
             >
-              Loading...
-            </span>
+              <div
+                class="col-12"
+              >
+                <div
+                  class="mb-3"
+                >
+                  <input
+                    aria-label="Search todos"
+                    class="form-control"
+                    id="search-todos"
+                    name="search-todos"
+                    placeholder="Search todos..."
+                    rows="3"
+                    tabindex="0"
+                    type="search"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                class="col-md-6"
+              >
+                <div
+                  class="mb-3"
+                >
+                  <select
+                    aria-label="Filter todos by status"
+                    class="form-select"
+                    id="filter-status"
+                    name="filter-status"
+                  >
+                    <option
+                      disabled=""
+                      value=""
+                    >
+                      Select an option
+                    </option>
+                    <option
+                      value="all"
+                    >
+                      All Tasks
+                    </option>
+                    <option
+                      value="completed"
+                    >
+                      Completed
+                    </option>
+                    <option
+                      value="pending"
+                    >
+                      Pending
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div
+                class="col-md-6"
+              >
+                <div
+                  class="mb-3"
+                >
+                  <select
+                    aria-label="Sort todos"
+                    class="form-select"
+                    id="sort-todos"
+                    name="sort-todos"
+                  >
+                    <option
+                      disabled=""
+                      value=""
+                    >
+                      Select an option
+                    </option>
+                    <option
+                      value="dueDate"
+                    >
+                      Sort by Due Date
+                    </option>
+                    <option
+                      value="priority"
+                    >
+                      Sort by Priority
+                    </option>
+                    <option
+                      value="createdAt"
+                    >
+                      Sort by Created Date
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="d-flex flex-column gap-1"
+        >
+          <div
+            class="card mb-1"
+            data-testid="todo-item-1"
+          >
+            <div
+              class="card-body"
+            >
+              <div
+                class="row align-items-start g-2"
+              >
+                <div
+                  class="col"
+                >
+                  <div
+                    class="form-check"
+                  >
+                    <input
+                      class="form-check-input mt-2"
+                      id="todo-1"
+                      type="checkbox"
+                      value="1"
+                    />
+                    <label
+                      class="form-check-label w-100 "
+                      for="todo-1"
+                    >
+                      <div
+                        class="ms-2"
+                      >
+                        <div
+                          class="d-flex align-items-center gap-2 mb-3"
+                        >
+                          <h5
+                            class="card-title mb-0 text-break "
+                          >
+                            First Todo
+                          </h5>
+                          <span
+                            class="badge bg-undefined"
+                            title="Priority: undefined"
+                          />
+                        </div>
+                        <h6
+                          class="card-subtitle text-body-secondary mb-2"
+                        >
+                          <i
+                            aria-hidden="true"
+                            class="bi bi-clock me-1"
+                          />
+                          Updated:
+                           
+                          2/16/2024, 9:00:00 AM
+                        </h6>
+                        <p
+                          class="card-text text-break mt-2 mb-0 "
+                        >
+                          First Description
+                        </p>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div
+                  class="col-auto"
+                >
+                  <div
+                    class="btn-group"
+                  >
+                    <button
+                      aria-label="Edit todo "First Todo""
+                      class="btn btn-secondary btn-sm"
+                      data-testid="edit-todo-1"
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="bi bi-pencil-square me-1"
+                      />
+                      Edit
+                    </button>
+                    <button
+                      aria-label="Delete todo "First Todo""
+                      class="btn btn-danger btn-sm"
+                      data-testid="delete-todo-1"
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="bi bi-trash me-1"
+                      />
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="card mb-1"
+            data-testid="todo-item-2"
+          >
+            <div
+              class="card-body"
+            >
+              <div
+                class="row align-items-start g-2"
+              >
+                <div
+                  class="col"
+                >
+                  <div
+                    class="form-check"
+                  >
+                    <input
+                      class="form-check-input mt-2"
+                      id="todo-2"
+                      type="checkbox"
+                      value="2"
+                    />
+                    <label
+                      class="form-check-label w-100 "
+                      for="todo-2"
+                    >
+                      <div
+                        class="ms-2"
+                      >
+                        <div
+                          class="d-flex align-items-center gap-2 mb-3"
+                        >
+                          <h5
+                            class="card-title mb-0 text-break "
+                          >
+                            Second Todo
+                          </h5>
+                          <span
+                            class="badge bg-undefined"
+                            title="Priority: undefined"
+                          />
+                        </div>
+                        <h6
+                          class="card-subtitle text-body-secondary mb-2"
+                        >
+                          <i
+                            aria-hidden="true"
+                            class="bi bi-clock me-1"
+                          />
+                          Updated:
+                           
+                          2/16/2024, 10:00:00 AM
+                        </h6>
+                        <p
+                          class="card-text text-break mt-2 mb-0 "
+                        >
+                          Second Description
+                        </p>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div
+                  class="col-auto"
+                >
+                  <div
+                    class="btn-group"
+                  >
+                    <button
+                      aria-label="Edit todo "Second Todo""
+                      class="btn btn-secondary btn-sm"
+                      data-testid="edit-todo-2"
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="bi bi-pencil-square me-1"
+                      />
+                      Edit
+                    </button>
+                    <button
+                      aria-label="Delete todo "Second Todo""
+                      class="btn btn-danger btn-sm"
+                      data-testid="delete-todo-2"
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="bi bi-trash me-1"
+                      />
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -147,45 +450,61 @@ exports[`TodoApp Component Snapshots renders correctly without todos 1`] = `
             <div
               class="col-12"
             >
-              <label
-                class="form-label"
-                for="title"
+              <div
+                class="mb-3"
               >
-                Title
-              </label>
-              <input
-                aria-describedby="titleFeedback"
-                aria-label="Todo title"
-                class="form-control "
-                id="title"
-                maxlength="50"
-                name="title"
-                placeholder="Enter title"
-                tabindex="0"
-                type="text"
-                value=""
-              />
+                <label
+                  class="form-label"
+                  for="title"
+                >
+                  Title
+                  <span
+                    class="text-danger ms-1"
+                  >
+                    *
+                  </span>
+                </label>
+                <input
+                  aria-describedby="titleFeedback"
+                  aria-label="Todo title"
+                  class="form-control"
+                  id="title"
+                  maxlength="50"
+                  name="title"
+                  placeholder="Enter title"
+                  required=""
+                  rows="3"
+                  tabindex="0"
+                  type="text"
+                  value=""
+                />
+              </div>
             </div>
             <div
               class="col-12"
             >
-              <label
-                class="form-label"
-                for="description"
+              <div
+                class="mb-3"
               >
-                Description
-              </label>
-              <textarea
-                aria-describedby="descriptionFeedback"
-                aria-label="Todo description"
-                class="form-control "
-                id="description"
-                maxlength="500"
-                name="description"
-                placeholder="Enter description"
-                rows="3"
-                tabindex="0"
-              />
+                <label
+                  class="form-label"
+                  for="description"
+                >
+                  Description
+                </label>
+                <textarea
+                  aria-describedby="descriptionFeedback"
+                  aria-label="Todo description"
+                  class="form-control"
+                  id="description"
+                  maxlength="500"
+                  name="description"
+                  placeholder="Enter description"
+                  rows="3"
+                  tabindex="0"
+                  type="text"
+                />
+              </div>
             </div>
             <div
               class="col-12 d-flex justify-content-center gap-2"
@@ -213,18 +532,113 @@ exports[`TodoApp Component Snapshots renders correctly without todos 1`] = `
         class="col-12 col-sm-7 col-md-6"
       >
         <div
-          class="d-flex justify-content-center align-items-center gap-3 flex-wrap"
+          class="card mb-3"
         >
           <div
-            class="spinner-border text-primary  "
-            role="status"
+            class="card-body"
           >
-            <span
-              class="visually-hidden"
+            <div
+              class="row g-3"
             >
-              Loading...
-            </span>
+              <div
+                class="col-12"
+              >
+                <div
+                  class="mb-3"
+                >
+                  <input
+                    aria-label="Search todos"
+                    class="form-control"
+                    id="search-todos"
+                    name="search-todos"
+                    placeholder="Search todos..."
+                    rows="3"
+                    tabindex="0"
+                    type="search"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                class="col-md-6"
+              >
+                <div
+                  class="mb-3"
+                >
+                  <select
+                    aria-label="Filter todos by status"
+                    class="form-select"
+                    id="filter-status"
+                    name="filter-status"
+                  >
+                    <option
+                      disabled=""
+                      value=""
+                    >
+                      Select an option
+                    </option>
+                    <option
+                      value="all"
+                    >
+                      All Tasks
+                    </option>
+                    <option
+                      value="completed"
+                    >
+                      Completed
+                    </option>
+                    <option
+                      value="pending"
+                    >
+                      Pending
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div
+                class="col-md-6"
+              >
+                <div
+                  class="mb-3"
+                >
+                  <select
+                    aria-label="Sort todos"
+                    class="form-select"
+                    id="sort-todos"
+                    name="sort-todos"
+                  >
+                    <option
+                      disabled=""
+                      value=""
+                    >
+                      Select an option
+                    </option>
+                    <option
+                      value="dueDate"
+                    >
+                      Sort by Due Date
+                    </option>
+                    <option
+                      value="priority"
+                    >
+                      Sort by Priority
+                    </option>
+                    <option
+                      value="createdAt"
+                    >
+                      Sort by Created Date
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+        <div
+          class="alert alert-info"
+          role="alert"
+        >
+          No todos yet. Add your first todo!
         </div>
       </div>
     </div>

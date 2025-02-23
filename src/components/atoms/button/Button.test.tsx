@@ -2,7 +2,37 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Button from './Button';
-
+/**
+ * Test suite for the Button component covering:
+ * - Basic Rendering
+ *   - Renders with required props
+ *   - Renders with children content
+ *   - Renders with different variants
+ *   - Renders with custom classes
+ *
+ * - Functionality
+ *   - Click handling
+ *   - Disabled state
+ *   - Loading state
+ *   - Link behavior
+ *
+ * - Accessibility
+ *   - ARIA attributes
+ *   - Keyboard navigation
+ *   - Focus handling
+ *
+ * - Styling
+ *   - Size variants
+ *   - Color variants
+ *   - Icon placement
+ *   - Loading spinner
+ *
+ * - Snapshots
+ *   - Primary variant
+ *   - Secondary variant
+ *   - Disabled state
+ *   - Loading state
+ */
 describe('Button Component', () => {
   // Snapshot Tests
   describe('Snapshots', () => {

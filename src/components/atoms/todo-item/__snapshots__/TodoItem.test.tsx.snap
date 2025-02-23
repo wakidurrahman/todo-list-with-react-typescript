@@ -1,84 +1,455 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TodoItem Component Snapshots renders todo item correctly 1`] = `
-<div>
+exports[`TodoItem Component Snapshots matches basic todo snapshot 1`] = `
+<div
+  className="card mb-1"
+  data-testid="todo-item-1"
+>
   <div
-    class="card mb-3"
+    className="card-body"
   >
     <div
-      class="card-body"
+      className="row align-items-start g-2"
     >
       <div
-        class="row align-items-start g-3"
+        className="col"
       >
         <div
-          class="col"
+          className="form-check"
         >
-          <div
-            class="form-check"
+          <input
+            checked={false}
+            className="form-check-input mt-2"
+            id="todo-1"
+            onChange={[Function]}
+            type="checkbox"
+            value="1"
+          />
+          <label
+            className="form-check-label w-100 "
+            htmlFor="todo-1"
           >
-            <input
-              class="form-check-input mt-2"
-              id="todo-1"
-              type="checkbox"
-            />
-            <label
-              class="form-check-label w-100 "
-              for="todo-1"
+            <div
+              className="ms-2"
             >
               <div
-                class="ms-2"
+                className="d-flex align-items-center gap-2 mb-3"
               >
                 <h5
-                  class="card-title mb-1 text-break"
+                  className="card-title mb-0 text-break "
                 >
                   Test Todo
                 </h5>
-                <h6
-                  class="card-subtitle mb-2 text-body-secondary"
+                <span
+                  className="badge bg-danger"
+                  title="Priority: high"
                 >
-                  <i
-                    class="bi bi-clock me-1"
-                  />
-                  Last updated: 
-                  2/16/2024, 6:00:00 PM
-                </h6>
-                <p
-                  class="card-text text-break mb-0"
-                >
-                  Test Description
-                </p>
+                  high
+                </span>
               </div>
-            </label>
-          </div>
+              <h6
+                className="card-subtitle text-body-secondary mb-2"
+              >
+                <i
+                  aria-hidden="true"
+                  className="bi bi-clock me-1"
+                />
+                Updated:
+                 
+                2/23/2024, 9:00:00 PM
+              </h6>
+              <h6
+                className="card-subtitle mb-0 text-danger"
+              >
+                <i
+                  aria-hidden="true"
+                  className="bi bi-calendar-event me-1"
+                />
+                Due: 
+                2/24/2024, 9:00:00 PM
+              </h6>
+              <p
+                className="card-text text-break mt-2 mb-0 "
+              >
+                Test Description
+              </p>
+            </div>
+          </label>
         </div>
+      </div>
+      <div
+        className="col-auto"
+      >
         <div
-          class="col-auto"
+          className="btn-group"
         >
-          <div
-            class="btn-group"
+          <button
+            aria-label="Edit todo "Test Todo""
+            className="btn btn-secondary btn-sm"
+            data-testid="edit-todo-1"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
           >
-            <button
-              aria-label="Edit todo"
-              class="btn btn-secondary btn-sm"
-              data-testid="edit-todo-1"
-              type="button"
+            <i
+              aria-hidden="true"
+              className="bi bi-pencil-square me-1"
+            />
+            Edit
+          </button>
+          <button
+            aria-label="Delete todo "Test Todo""
+            className="btn btn-danger btn-sm"
+            data-testid="delete-todo-1"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <i
+              aria-hidden="true"
+              className="bi bi-trash me-1"
+            />
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TodoItem Component Snapshots matches completed todo snapshot 1`] = `
+<div
+  className="card mb-1"
+  data-testid="todo-item-1"
+>
+  <div
+    className="card-body"
+  >
+    <div
+      className="row align-items-start g-2"
+    >
+      <div
+        className="col"
+      >
+        <div
+          className="form-check"
+        >
+          <input
+            checked={true}
+            className="form-check-input mt-2"
+            id="todo-1"
+            onChange={[Function]}
+            type="checkbox"
+            value="1"
+          />
+          <label
+            className="form-check-label w-100 text-decoration-line-through"
+            htmlFor="todo-1"
+          >
+            <div
+              className="ms-2"
             >
-              <i
-                class="bi bi-pencil-square me-1"
-              />
-            </button>
-            <button
-              aria-label="Delete todo"
-              class="btn btn-danger btn-sm"
-              data-testid="delete-todo-1"
-              type="button"
+              <div
+                className="d-flex align-items-center gap-2 mb-3"
+              >
+                <h5
+                  className="card-title mb-0 text-break text-decoration-line-through"
+                >
+                  Test Todo
+                </h5>
+                <span
+                  className="badge bg-danger"
+                  title="Priority: high"
+                >
+                  high
+                </span>
+              </div>
+              <h6
+                className="card-subtitle text-body-secondary mb-2"
+              >
+                <i
+                  aria-hidden="true"
+                  className="bi bi-clock me-1"
+                />
+                Updated:
+                 
+                2/23/2024, 9:00:00 PM
+              </h6>
+              <h6
+                className="card-subtitle mb-0 text-danger"
+              >
+                <i
+                  aria-hidden="true"
+                  className="bi bi-calendar-event me-1"
+                />
+                Due: 
+                2/24/2024, 9:00:00 PM
+              </h6>
+              <p
+                className="card-text text-break mt-2 mb-0 text-decoration-line-through"
+              >
+                Test Description
+              </p>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div
+        className="col-auto"
+      >
+        <div
+          className="btn-group"
+        >
+          <button
+            aria-label="Edit todo "Test Todo""
+            className="btn btn-secondary btn-sm"
+            data-testid="edit-todo-1"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <i
+              aria-hidden="true"
+              className="bi bi-pencil-square me-1"
+            />
+            Edit
+          </button>
+          <button
+            aria-label="Delete todo "Test Todo""
+            className="btn btn-danger btn-sm"
+            data-testid="delete-todo-1"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <i
+              aria-hidden="true"
+              className="bi bi-trash me-1"
+            />
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TodoItem Component Snapshots matches minimal todo snapshot 1`] = `
+<div
+  className="card mb-1"
+  data-testid="todo-item-2"
+>
+  <div
+    className="card-body"
+  >
+    <div
+      className="row align-items-start g-2"
+    >
+      <div
+        className="col"
+      >
+        <div
+          className="form-check"
+        >
+          <input
+            checked={false}
+            className="form-check-input mt-2"
+            id="todo-2"
+            onChange={[Function]}
+            type="checkbox"
+            value="2"
+          />
+          <label
+            className="form-check-label w-100 "
+            htmlFor="todo-2"
+          >
+            <div
+              className="ms-2"
             >
-              <i
-                class="bi bi-trash me-1"
-              />
-            </button>
-          </div>
+              <div
+                className="d-flex align-items-center gap-2 mb-3"
+              >
+                <h5
+                  className="card-title mb-0 text-break "
+                >
+                  Minimal Todo
+                </h5>
+                <span
+                  className="badge bg-info"
+                  title="Priority: low"
+                >
+                  low
+                </span>
+              </div>
+              <h6
+                className="card-subtitle text-body-secondary mb-2"
+              >
+                <i
+                  aria-hidden="true"
+                  className="bi bi-clock me-1"
+                />
+                Updated:
+                 
+                Never
+              </h6>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div
+        className="col-auto"
+      >
+        <div
+          className="btn-group"
+        >
+          <button
+            aria-label="Edit todo "Minimal Todo""
+            className="btn btn-secondary btn-sm"
+            data-testid="edit-todo-2"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <i
+              aria-hidden="true"
+              className="bi bi-pencil-square me-1"
+            />
+            Edit
+          </button>
+          <button
+            aria-label="Delete todo "Minimal Todo""
+            className="btn btn-danger btn-sm"
+            data-testid="delete-todo-2"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <i
+              aria-hidden="true"
+              className="bi bi-trash me-1"
+            />
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TodoItem Component Snapshots matches overdue todo snapshot 1`] = `
+<div
+  className="card mb-1"
+  data-testid="todo-item-1"
+>
+  <div
+    className="card-body"
+  >
+    <div
+      className="row align-items-start g-2"
+    >
+      <div
+        className="col"
+      >
+        <div
+          className="form-check"
+        >
+          <input
+            checked={false}
+            className="form-check-input mt-2"
+            id="todo-1"
+            onChange={[Function]}
+            type="checkbox"
+            value="1"
+          />
+          <label
+            className="form-check-label w-100 "
+            htmlFor="todo-1"
+          >
+            <div
+              className="ms-2"
+            >
+              <div
+                className="d-flex align-items-center gap-2 mb-3"
+              >
+                <h5
+                  className="card-title mb-0 text-break "
+                >
+                  Test Todo
+                </h5>
+                <span
+                  className="badge bg-danger"
+                  title="Priority: high"
+                >
+                  high
+                </span>
+              </div>
+              <h6
+                className="card-subtitle text-body-secondary mb-2"
+              >
+                <i
+                  aria-hidden="true"
+                  className="bi bi-clock me-1"
+                />
+                Updated:
+                 
+                2/23/2024, 9:00:00 PM
+              </h6>
+              <h6
+                className="card-subtitle mb-0 text-danger"
+              >
+                <i
+                  aria-hidden="true"
+                  className="bi bi-calendar-event me-1"
+                />
+                Due: 
+                2/22/2025, 10:23:00 PM
+              </h6>
+              <p
+                className="card-text text-break mt-2 mb-0 "
+              >
+                Test Description
+              </p>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div
+        className="col-auto"
+      >
+        <div
+          className="btn-group"
+        >
+          <button
+            aria-label="Edit todo "Test Todo""
+            className="btn btn-secondary btn-sm"
+            data-testid="edit-todo-1"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <i
+              aria-hidden="true"
+              className="bi bi-pencil-square me-1"
+            />
+            Edit
+          </button>
+          <button
+            aria-label="Delete todo "Test Todo""
+            className="btn btn-danger btn-sm"
+            data-testid="delete-todo-1"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <i
+              aria-hidden="true"
+              className="bi bi-trash me-1"
+            />
+            Delete
+          </button>
         </div>
       </div>
     </div>

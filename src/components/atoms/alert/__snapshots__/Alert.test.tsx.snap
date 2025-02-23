@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert Component Snapshots matches complex message snapshot 1`] = `
+<div
+  aria-live="polite"
+  className="alert alert-info alert-dismissible fade show"
+  data-testid="alert"
+  role="alert"
+>
+  <div>
+    <h4>
+      Alert Title
+    </h4>
+    <p>
+      Alert content
+    </p>
+  </div>
+  <button
+    aria-label="Close alert"
+    className="btn btn-secondary btn-md btn-close"
+    data-testid="alert-close-button"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  />
+</div>
+`;
+
+exports[`Alert Component Snapshots matches default alert snapshot 1`] = `
+<div
+  aria-live="polite"
+  className="alert alert-info alert-dismissible fade show"
+  data-testid="alert"
+  role="alert"
+>
+  Default alert
+  <button
+    aria-label="Close alert"
+    className="btn btn-secondary btn-md btn-close"
+    data-testid="alert-close-button"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  />
+</div>
+`;
+
+exports[`Alert Component Snapshots matches non-dismissible alert snapshot 1`] = `
+<div
+  aria-live="polite"
+  className="alert alert-info "
+  data-testid="alert"
+  role="alert"
+>
+  Non-dismissible alert
+</div>
+`;
+
+exports[`Alert Component Snapshots matches success variant snapshot 1`] = `
+<div
+  aria-live="polite"
+  className="alert alert-success alert-dismissible fade show"
+  data-testid="alert"
+  role="alert"
+>
+  Success alert
+  <button
+    aria-label="Close alert"
+    className="btn btn-secondary btn-md btn-close"
+    data-testid="alert-close-button"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  />
+</div>
+`;

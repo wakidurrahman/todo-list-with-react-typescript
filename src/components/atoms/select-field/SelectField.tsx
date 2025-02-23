@@ -1,10 +1,43 @@
+/**
+ * SelectField Component
+ *
+ * A reusable form select component that follows Bootstrap styling conventions
+ * and implements accessibility best practices.
+ *
+ * Features:
+ * - Single and multiple selection support
+ * - Built-in validation states and feedback
+ * - Help text and error message display
+ * - Accessibility support with ARIA attributes
+ * - Bootstrap form styling
+ * - Customizable size and appearance
+ * - Default option handling
+ * - Disabled options support
+ *
+ * @example
+ * <SelectField
+ *   id="country"
+ *   label="Country"
+ *   options={[
+ *     { value: 'us', label: 'United States' },
+ *     { value: 'ca', label: 'Canada' }
+ *   ]}
+ *   value={selectedCountry}
+ *   onChange={handleCountryChange}
+ *   required
+ * />
+ */
+
 import React from 'react';
 
 type SelectSize = 'sm' | 'lg' | undefined;
 
 type SelectOption = {
+  /** Value of the option */
   value: string;
+  /** Display label for the option */
   label: string;
+  /** Whether the option is disabled */
   disabled?: boolean;
 };
 
@@ -43,6 +76,10 @@ type SelectFieldProps = {
   defaultOption?: string;
 };
 
+/**
+ * SelectField component that renders a select element with associated label,
+ * help text, and validation feedback.
+ */
 const SelectField = ({
   options,
   value,
@@ -61,14 +98,24 @@ const SelectField = ({
   visibleOptions,
   defaultOption = 'Select an option',
 }: SelectFieldProps) => {
-  // Generate unique IDs for help text and error message
+  // Generate unique IDs for accessibility elements
   const helpTextId = `${id}-help-text`;
   const errorId = `${id}-error`;
 
-  // Combine aria-describedby values
+  // Combine aria-describedby values for accessibility
   const ariaDescribedbyValues = [
     helpText ? helpTextId : '',
     error ? errorId : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  // Build class names for form select with validation states
+  const selectClasses = [
+    'form-select',
+    size && `form-select-${size}`,
+    error && 'is-invalid',
+    className,
   ]
     .filter(Boolean)
     .join(' ');
@@ -82,9 +129,7 @@ const SelectField = ({
         </label>
       )}
       <select
-        className={`form-select ${size ? `form-select-${size}` : ''} ${
-          error ? 'is-invalid' : ''
-        } ${className}`.trim()}
+        className={selectClasses}
         id={id}
         name={name || id}
         value={value}

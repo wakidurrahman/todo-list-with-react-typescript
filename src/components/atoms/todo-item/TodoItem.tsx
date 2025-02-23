@@ -2,12 +2,13 @@
  * TodoItem Component
  *
  * A React component that displays a single todo item in a card format with the following features:
- * - Shows todo title, description, and last updated timestamp.
- * - Checkbox to toggle completion status.
- * - Edit and Delete action buttons.
- * - Responsive layout with Bootstrap.
- * - Accessibility features.
- * - Visual indication of completed todos.
+ * - Shows todo title, description, priority, due date and last updated timestamp
+ * - Checkbox to toggle completion status
+ * - Edit and Delete action buttons
+ * - Responsive layout with Bootstrap classes
+ * - Accessibility features including ARIA labels and keyboard navigation
+ * - Visual indication of completed todos and overdue items
+ * - Priority badges with color coding
  *
  * @component
  * @example
@@ -38,7 +39,7 @@ type TodoItemProps = {
   onToggleComplete?: (id: string) => void;
 };
 
-// Add priority colors
+// Priority color mapping for badges
 const priorityColors: Record<Priority, string> = {
   high: 'danger',
   medium: 'warning',
@@ -54,7 +55,7 @@ const TodoItem = ({
   const isOverdue = todo.dueDate && new Date(todo.dueDate) < new Date();
 
   return (
-    <div className="card mb-1">
+    <div className="card mb-1" data-testid={`todo-item-${todo.id}`}>
       <div className="card-body">
         <div className="row align-items-start g-2">
           {/* Checkbox and Content Column */}
@@ -64,19 +65,25 @@ const TodoItem = ({
               onChange={() => onToggleComplete?.(todo.id)}
               id={`todo-${todo.id}`}
               value={todo.id}
+              aria-label={`Mark "${todo.title}" as ${todo.completed ? 'incomplete' : 'complete'}`}
             >
               <div className="ms-2">
                 <div className="d-flex align-items-center gap-2 mb-3">
-                  <h5 className="card-title mb-0 text-break">{todo.title}</h5>
+                  <h5
+                    className={`card-title mb-0 text-break ${todo.completed ? 'text-decoration-line-through' : ''}`}
+                  >
+                    {todo.title}
+                  </h5>
                   <span
                     className={`badge bg-${priorityColors[todo.priority as Priority]}`}
+                    title={`Priority: ${todo.priority}`}
                   >
                     {todo.priority}
                   </span>
                 </div>
 
                 <h6 className="card-subtitle text-body-secondary mb-2">
-                  <i className="bi bi-clock me-1"></i>
+                  <i className="bi bi-clock me-1" aria-hidden="true"></i>
                   Updated:{' '}
                   {todo.updatedAt
                     ? new Date(todo.updatedAt).toLocaleString()
@@ -86,13 +93,18 @@ const TodoItem = ({
                   <h6
                     className={`card-subtitle mb-0 ${isOverdue ? 'text-danger' : 'text-body-secondary'}`}
                   >
-                    <i className="bi bi-calendar-event me-1"></i>
+                    <i
+                      className="bi bi-calendar-event me-1"
+                      aria-hidden="true"
+                    ></i>
                     Due: {new Date(todo.dueDate).toLocaleString()}
                   </h6>
                 )}
 
                 {todo.description && (
-                  <p className="card-text text-break mt-2 mb-0">
+                  <p
+                    className={`card-text text-break mt-2 mb-0 ${todo.completed ? 'text-decoration-line-through' : ''}`}
+                  >
                     {todo.description}
                   </p>
                 )}
@@ -107,19 +119,21 @@ const TodoItem = ({
                 variant="secondary"
                 size="sm"
                 onClick={() => onEdit(todo)}
-                aria-label="Edit todo"
+                aria-label={`Edit todo "${todo.title}"`}
                 data-testid={`edit-todo-${todo.id}`}
               >
-                <i className="bi bi-pencil-square me-1"></i>
+                <i className="bi bi-pencil-square me-1" aria-hidden="true"></i>
+                Edit
               </Button>
               <Button
                 variant="danger"
                 size="sm"
                 onClick={() => onDelete(todo.id)}
-                aria-label="Delete todo"
+                aria-label={`Delete todo "${todo.title}"`}
                 data-testid={`delete-todo-${todo.id}`}
               >
-                <i className="bi bi-trash me-1"></i>
+                <i className="bi bi-trash me-1" aria-hidden="true"></i>
+                Delete
               </Button>
             </div>
           </div>

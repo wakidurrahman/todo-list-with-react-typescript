@@ -1,3 +1,29 @@
+/**
+ * InputField Component
+ *
+ * A reusable form input component that supports both text input and textarea elements.
+ * Follows Bootstrap styling conventions and implements accessibility best practices.
+ *
+ * Features:
+ * - Support for `input` and `textarea` elements
+ * - Built-in validation states and feedback
+ * - Help text and error message display
+ * - Accessibility support with ARIA attributes
+ * - Bootstrap form styling
+ * - Customizable size and appearance
+ *
+ * @example
+ * <InputField
+ *   id="email"
+ *   label="Email Address"
+ *   type="email"
+ *   value={email}
+ *   onChange={handleEmailChange}
+ *   required
+ *   placeholder="Enter your email"
+ * />
+ */
+
 import { ChangeEvent } from 'react';
 
 type InputSize = 'sm' | 'lg' | undefined;
@@ -9,7 +35,7 @@ type InputFieldProps = {
   /** Input label */
   label?: string;
   /** Input type (text, email, password, etc.) */
-  type?: 'text' | 'email' | 'password' | 'number';
+  type?: 'text' | 'email' | 'password' | 'number' | 'search';
   /** Input value */
   value: string;
   /** Callback when input value changes */
@@ -50,6 +76,10 @@ type InputFieldProps = {
   rows?: number;
 };
 
+/**
+ * InputField component that renders either an input or textarea element with associated label,
+ * help text, and validation feedback.
+ */
 const InputField = ({
   tagName = 'input',
   type = 'text',
@@ -75,19 +105,30 @@ const InputField = ({
   tabIndex = 0,
   rows = 3,
 }: InputFieldProps) => {
-  // Tag name
+  // Determine whether to render an input or textarea element
   const Tag = tagName === 'input' ? 'input' : 'textarea';
-  // Generate unique IDs for help text and error message
+
+  // Generate unique IDs for accessibility elements
   const helpTextId = `${id}-help-text`;
   const errorId = `${id}-error`;
   const feedbackId = `${id}-field`;
 
-  // Combine aria-describedby values
+  // Combine aria-describedby values for accessibility
   const ariaDescribedbyValues = [
     helpText ? helpTextId : '',
     error ? errorId : '',
     ariaDescribedby || '',
     touched ? feedbackId : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  // Build class names for form control with validation states
+  const formControlClasses = [
+    'form-control',
+    size && `form-control-${size}`,
+    touched && (error ? 'is-invalid' : isValid && 'is-valid'),
+    className,
   ]
     .filter(Boolean)
     .join(' ');
@@ -102,15 +143,11 @@ const InputField = ({
       )}
       <Tag
         type={type}
-        className={`form-control ${size ? `form-control-${size}` : ''} ${
-          touched ? (error ? 'is-invalid' : isValid ? 'is-valid' : '') : ''
-        } ${className}`.trim()}
+        className={formControlClasses}
         id={id}
         name={name || id}
         value={value}
-        onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-          onChange(e)
-        }
+        onChange={onChange}
         placeholder={placeholder}
         disabled={disabled}
         readOnly={readOnly}

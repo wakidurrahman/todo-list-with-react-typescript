@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner Component Snapshots matches custom variant and size snapshot 1`] = `
+<div
+  aria-live="polite"
+  className="spinner-border text-success spinner-border spinner-border-lg m-3"
+  role="status"
+>
+  <span
+    className="visually-hidden"
+  >
+    Custom loading...
+  </span>
+</div>
+`;
+
+exports[`Spinner Component Snapshots matches default spinner snapshot 1`] = `
+<div
+  aria-live="polite"
+  className="spinner-border text-primary"
+  role="status"
+>
+  <span
+    className="visually-hidden"
+  >
+    Loading...
+  </span>
+</div>
+`;
+
+exports[`Spinner Component Snapshots matches small spinner with custom text snapshot 1`] = `
+<div
+  aria-live="polite"
+  className="spinner-border text-warning spinner-border-sm"
+  role="status"
+>
+  <span
+    className="visually-hidden"
+  >
+    Processing...
+  </span>
+</div>
+`;

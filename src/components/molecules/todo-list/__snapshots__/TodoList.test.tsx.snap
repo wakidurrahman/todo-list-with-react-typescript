@@ -14,105 +14,199 @@ exports[`TodoList Component Snapshots renders empty list correctly 1`] = `
 exports[`TodoList Component Snapshots renders list with todos correctly 1`] = `
 <div>
   <div
-    class="d-flex flex-column gap-3"
+    class="d-flex flex-column gap-1"
   >
     <div
-      class="card text-bg-secondary"
+      class="card mb-1"
+      data-testid="todo-item-1"
     >
       <div
         class="card-body"
       >
-        <h5
-          class="card-title"
-        >
-          First Todo
-        </h5>
-        <h6
-          class="card-subtitle mb-2 "
-        >
-          <i
-            class="bi bi-clock me-1"
-          />
-           Last updated:
-           
-          2/16/2024, 9:00:00 AM
-        </h6>
-        <p
-          class="card-text"
-        >
-          First Description
-        </p>
         <div
-          class="d-flex justify-content-end gap-2"
+          class="row align-items-start g-2"
         >
-          <button
-            class="btn btn-secondary btn-md d-flex align-items-center"
-            type="button"
+          <div
+            class="col"
           >
-            <i
-              class="bi bi-pencil-square me-1"
-            />
-            Edit
-          </button>
-          <button
-            class="btn btn-danger btn-md d-flex align-items-center"
-            type="button"
+            <div
+              class="form-check"
+            >
+              <input
+                class="form-check-input mt-2"
+                id="todo-1"
+                type="checkbox"
+                value="1"
+              />
+              <label
+                class="form-check-label w-100 "
+                for="todo-1"
+              >
+                <div
+                  class="ms-2"
+                >
+                  <div
+                    class="d-flex align-items-center gap-2 mb-3"
+                  >
+                    <h5
+                      class="card-title mb-0 text-break "
+                    >
+                      First Todo
+                    </h5>
+                    <span
+                      class="badge bg-undefined"
+                      title="Priority: undefined"
+                    />
+                  </div>
+                  <h6
+                    class="card-subtitle text-body-secondary mb-2"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="bi bi-clock me-1"
+                    />
+                    Updated:
+                     
+                    2/16/2024, 9:00:00 AM
+                  </h6>
+                  <p
+                    class="card-text text-break mt-2 mb-0 "
+                  >
+                    First Description
+                  </p>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div
+            class="col-auto"
           >
-            <i
-              class="bi bi-trash me-1"
-            />
-            Delete
-          </button>
+            <div
+              class="btn-group"
+            >
+              <button
+                aria-label="Edit todo "First Todo""
+                class="btn btn-secondary btn-sm"
+                data-testid="edit-todo-1"
+                type="button"
+              >
+                <i
+                  aria-hidden="true"
+                  class="bi bi-pencil-square me-1"
+                />
+                Edit
+              </button>
+              <button
+                aria-label="Delete todo "First Todo""
+                class="btn btn-danger btn-sm"
+                data-testid="delete-todo-1"
+                type="button"
+              >
+                <i
+                  aria-hidden="true"
+                  class="bi bi-trash me-1"
+                />
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div
-      class="card text-bg-secondary"
+      class="card mb-1"
+      data-testid="todo-item-2"
     >
       <div
         class="card-body"
       >
-        <h5
-          class="card-title"
-        >
-          Second Todo
-        </h5>
-        <h6
-          class="card-subtitle mb-2 "
-        >
-          <i
-            class="bi bi-clock me-1"
-          />
-           Last updated:
-           
-          2/16/2024, 10:00:00 AM
-        </h6>
-        <p
-          class="card-text"
-        >
-          Second Description
-        </p>
         <div
-          class="d-flex justify-content-end gap-2"
+          class="row align-items-start g-2"
         >
-          <button
-            class="btn btn-secondary btn-md d-flex align-items-center"
-            type="button"
+          <div
+            class="col"
           >
-            <i
-              class="bi bi-pencil-square me-1"
-            />
-            Edit
-          </button>
-          <button
-            class="btn btn-danger btn-md d-flex align-items-center"
-            type="button"
+            <div
+              class="form-check"
+            >
+              <input
+                class="form-check-input mt-2"
+                id="todo-2"
+                type="checkbox"
+                value="2"
+              />
+              <label
+                class="form-check-label w-100 "
+                for="todo-2"
+              >
+                <div
+                  class="ms-2"
+                >
+                  <div
+                    class="d-flex align-items-center gap-2 mb-3"
+                  >
+                    <h5
+                      class="card-title mb-0 text-break "
+                    >
+                      Second Todo
+                    </h5>
+                    <span
+                      class="badge bg-undefined"
+                      title="Priority: undefined"
+                    />
+                  </div>
+                  <h6
+                    class="card-subtitle text-body-secondary mb-2"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="bi bi-clock me-1"
+                    />
+                    Updated:
+                     
+                    2/16/2024, 10:00:00 AM
+                  </h6>
+                  <p
+                    class="card-text text-break mt-2 mb-0 "
+                  >
+                    Second Description
+                  </p>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div
+            class="col-auto"
           >
-            <i
-              class="bi bi-trash me-1"
-            />
-            Delete
-          </button>
+            <div
+              class="btn-group"
+            >
+              <button
+                aria-label="Edit todo "Second Todo""
+                class="btn btn-secondary btn-sm"
+                data-testid="edit-todo-2"
+                type="button"
+              >
+                <i
+                  aria-hidden="true"
+                  class="bi bi-pencil-square me-1"
+                />
+                Edit
+              </button>
+              <button
+                aria-label="Delete todo "Second Todo""
+                class="btn btn-danger btn-sm"
+                data-testid="delete-todo-2"
+                type="button"
+              >
+                <i
+                  aria-hidden="true"
+                  class="bi bi-trash me-1"
+                />
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

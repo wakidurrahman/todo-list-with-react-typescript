@@ -1,0 +1,200 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectField Component Snapshots matches basic select snapshot 1`] = `
+<div
+  className="mb-3"
+>
+  <label
+    className="form-label"
+    htmlFor="test-select"
+  >
+    Basic Select
+  </label>
+  <select
+    className="form-select"
+    disabled={false}
+    id="test-select"
+    multiple={false}
+    name="test-select"
+    onChange={[MockFunction]}
+    required={false}
+    value=""
+  >
+    <option
+      disabled={true}
+      value=""
+    >
+      Select an option
+    </option>
+    <option
+      value="option1"
+    >
+      Option 1
+    </option>
+    <option
+      value="option2"
+    >
+      Option 2
+    </option>
+    <option
+      value="option3"
+    >
+      Option 3
+    </option>
+  </select>
+</div>
+`;
+
+exports[`SelectField Component Snapshots matches multiple select snapshot 1`] = `
+<div
+  className="mb-3"
+>
+  <label
+    className="form-label"
+    htmlFor="test-select"
+  >
+    Multiple Select
+  </label>
+  <select
+    className="form-select"
+    disabled={false}
+    id="test-select"
+    multiple={true}
+    name="test-select"
+    onChange={[MockFunction]}
+    required={false}
+    size={3}
+    value=""
+  >
+    <option
+      value="option1"
+    >
+      Option 1
+    </option>
+    <option
+      value="option2"
+    >
+      Option 2
+    </option>
+    <option
+      value="option3"
+    >
+      Option 3
+    </option>
+  </select>
+</div>
+`;
+
+exports[`SelectField Component Snapshots matches select with disabled options snapshot 1`] = `
+<div
+  className="mb-3"
+>
+  <label
+    className="form-label"
+    htmlFor="test-select"
+  >
+    Select with Disabled Option
+  </label>
+  <select
+    className="form-select"
+    disabled={false}
+    id="test-select"
+    multiple={false}
+    name="test-select"
+    onChange={[MockFunction]}
+    required={false}
+    value=""
+  >
+    <option
+      disabled={true}
+      value=""
+    >
+      Select an option
+    </option>
+    <option
+      value="option1"
+    >
+      Option 1
+    </option>
+    <option
+      value="option2"
+    >
+      Option 2
+    </option>
+    <option
+      value="option3"
+    >
+      Option 3
+    </option>
+    <option
+      disabled={true}
+      value="disabled"
+    >
+      Disabled Option
+    </option>
+  </select>
+</div>
+`;
+
+exports[`SelectField Component Snapshots matches select with validation snapshot 1`] = `
+<div
+  className="mb-3"
+>
+  <label
+    className="form-label"
+    htmlFor="test-select"
+  >
+    Validated Select
+    <span
+      className="text-danger ms-1"
+    >
+      *
+    </span>
+  </label>
+  <select
+    aria-describedby="test-select-help-text test-select-error"
+    className="form-select is-invalid"
+    disabled={false}
+    id="test-select"
+    multiple={false}
+    name="test-select"
+    onChange={[MockFunction]}
+    required={true}
+    value=""
+  >
+    <option
+      disabled={true}
+      value=""
+    >
+      Select an option
+    </option>
+    <option
+      value="option1"
+    >
+      Option 1
+    </option>
+    <option
+      value="option2"
+    >
+      Option 2
+    </option>
+    <option
+      value="option3"
+    >
+      Option 3
+    </option>
+  </select>
+  <div
+    className="form-text"
+    id="test-select-help-text"
+  >
+    Help text
+  </div>
+  <div
+    className="invalid-feedback"
+    id="test-select-error"
+  >
+    Error message
+  </div>
+</div>
+`;

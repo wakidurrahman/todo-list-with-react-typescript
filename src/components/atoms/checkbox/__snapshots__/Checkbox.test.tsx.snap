@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox Component Snapshots matches checkbox with custom attributes snapshot 1`] = `
+<div
+  className="form-check"
+>
+  <input
+    aria-label="Custom label"
+    checked={false}
+    className="form-check-input mt-2"
+    id="test-checkbox"
+    onChange={[MockFunction]}
+    type="checkbox"
+    value="custom-value"
+  />
+  <label
+    className="form-check-label w-100 "
+    htmlFor="test-checkbox"
+  >
+    Custom Checkbox
+  </label>
+</div>
+`;
+
+exports[`Checkbox Component Snapshots matches checked checkbox snapshot 1`] = `
+<div
+  className="form-check"
+>
+  <input
+    checked={true}
+    className="form-check-input mt-2"
+    id="test-checkbox"
+    onChange={[MockFunction]}
+    type="checkbox"
+  />
+  <label
+    className="form-check-label w-100 text-decoration-line-through"
+    htmlFor="test-checkbox"
+  >
+    Checked Item
+  </label>
+</div>
+`;
+
+exports[`Checkbox Component Snapshots matches unchecked checkbox snapshot 1`] = `
+<div
+  className="form-check"
+>
+  <input
+    checked={false}
+    className="form-check-input mt-2"
+    id="test-checkbox"
+    onChange={[MockFunction]}
+    type="checkbox"
+  />
+  <label
+    className="form-check-label w-100 "
+    htmlFor="test-checkbox"
+  >
+    Unchecked Item
+  </label>
+</div>
+`;

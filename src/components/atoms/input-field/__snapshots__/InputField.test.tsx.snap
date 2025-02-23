@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputField Component Snapshots matches basic input snapshot 1`] = `
+<div
+  className="mb-3"
+>
+  <label
+    className="form-label"
+    htmlFor="test-input"
+  >
+    Basic Input
+  </label>
+  <input
+    className="form-control"
+    disabled={false}
+    id="test-input"
+    name="test-input"
+    onChange={[MockFunction]}
+    readOnly={false}
+    required={false}
+    rows={3}
+    tabIndex={0}
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`InputField Component Snapshots matches input with validation snapshot 1`] = `
+<div
+  className="mb-3"
+>
+  <label
+    className="form-label"
+    htmlFor="test-input"
+  >
+    Validated Input
+  </label>
+  <input
+    aria-describedby="test-input-help-text test-input-error test-input-field"
+    className="form-control is-invalid"
+    disabled={false}
+    id="test-input"
+    name="test-input"
+    onChange={[MockFunction]}
+    readOnly={false}
+    required={false}
+    rows={3}
+    tabIndex={0}
+    type="text"
+    value=""
+  />
+  <div
+    className="form-text"
+    id="test-input-help-text"
+  >
+    Help text
+  </div>
+  <div
+    className="invalid-feedback"
+    id="test-input-error"
+  >
+    Error message
+  </div>
+</div>
+`;
+
+exports[`InputField Component Snapshots matches textarea snapshot 1`] = `
+<div
+  className="mb-3"
+>
+  <label
+    className="form-label"
+    htmlFor="test-input"
+  >
+    Textarea Input
+  </label>
+  <textarea
+    className="form-control"
+    disabled={false}
+    id="test-input"
+    name="test-input"
+    onChange={[MockFunction]}
+    readOnly={false}
+    required={false}
+    rows={4}
+    tabIndex={0}
+    type="text"
+    value=""
+  />
+</div>
+`;
