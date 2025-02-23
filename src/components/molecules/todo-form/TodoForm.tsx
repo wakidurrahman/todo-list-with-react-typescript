@@ -20,6 +20,7 @@
 import { useEffect, useState } from 'react';
 
 import Button from '@/components/atoms/button/Button';
+import InputField from '@/components/atoms/input-field/InputField';
 import { Todo, TodoFormData } from '@/types/todo.types';
 import {
   ValidationErrors,
@@ -115,67 +116,41 @@ const TodoForm = ({ onSubmit, editingTodo, onCancel }: TodoFormProps) => {
   return (
     <form onSubmit={handleSubmit} className="row g-3" noValidate>
       <div className="col-12">
-        <label htmlFor="title" className="form-label">
-          Title
-        </label>
-        <input
+        <InputField
+          id="title"
           type="text"
           placeholder="Enter title"
-          className={`form-control ${
-            touched.title ? (errors.title ? 'is-invalid' : 'is-valid') : ''
-          }`}
-          id="title"
-          name="title"
+          label="Title"
           value={formData.title}
           onChange={handleChange}
           maxLength={50}
+          touched={touched.title}
+          error={errors.title}
+          isValid={touched.title && !errors.title}
           aria-describedby="titleFeedback"
           aria-label="Todo title"
+          required
           tabIndex={0}
         />
-        {touched.title && errors.title && (
-          <div id="titleFeedback" className="invalid-feedback">
-            {errors.title || 'Please provide a valid title.'}
-          </div>
-        )}
-        {touched.title && !errors.title && (
-          <div className="valid-feedback">Looks good!</div>
-        )}
       </div>
-
       <div className="col-12">
-        <label htmlFor="description" className="form-label">
-          Description
-        </label>
-        <textarea
-          placeholder="Enter description"
-          className={`form-control ${
-            touched.description
-              ? errors.description
-                ? 'is-invalid'
-                : 'is-valid'
-              : ''
-          }`}
+        <InputField
+          tagName="textarea"
           id="description"
-          name="description"
+          placeholder="Enter description"
+          label="Description"
           value={formData.description}
           onChange={handleChange}
           rows={3}
           maxLength={500}
+          touched={touched.description}
+          error={errors.description}
+          isValid={touched.description && !errors.description}
           aria-describedby="descriptionFeedback"
           aria-label="Todo description"
           tabIndex={0}
         />
-        {touched.description && errors.description && (
-          <div id="descriptionFeedback" className="invalid-feedback">
-            {errors.description || 'Please provide a valid description.'}
-          </div>
-        )}
-        {touched.description && !errors.description && (
-          <div className="valid-feedback">Looks good!</div>
-        )}
       </div>
-
       <div className="col-12 d-flex justify-content-center gap-2">
         <Button
           type="submit"

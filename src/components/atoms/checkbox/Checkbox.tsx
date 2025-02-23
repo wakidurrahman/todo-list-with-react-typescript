@@ -1,4 +1,3 @@
-// src/components/atoms/checkbox/Checkbox.tsx
 import React from 'react';
 
 type CheckboxProps = {
@@ -10,14 +9,14 @@ type CheckboxProps = {
   children?: React.ReactNode;
 };
 
-const Checkbox: React.FC<CheckboxProps> = ({
+const Checkbox = ({
   checked,
   onChange,
   id,
   ariaLabel,
   value,
   children,
-}) => (
+}: CheckboxProps) => (
   <div className="form-check">
     <input
       className="form-check-input mt-2"

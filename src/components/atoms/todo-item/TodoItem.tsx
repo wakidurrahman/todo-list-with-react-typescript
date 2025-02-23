@@ -27,8 +27,6 @@
  * @param {Function} props.onToggleComplete - Optional callback when completion status is toggled
  */
 
-import React from 'react';
-
 import Button from '@/components/atoms/button/Button';
 import Checkbox from '@/components/atoms/checkbox/Checkbox';
 import { Priority, Todo } from '@/types/todo.types';
@@ -47,12 +45,12 @@ const priorityColors: Record<Priority, string> = {
   low: 'info',
 };
 
-const TodoItem: React.FC<TodoItemProps> = ({
+const TodoItem = ({
   todo,
   onEdit,
   onDelete,
   onToggleComplete,
-}) => {
+}: TodoItemProps) => {
   const isOverdue = todo.dueDate && new Date(todo.dueDate) < new Date();
 
   return (
