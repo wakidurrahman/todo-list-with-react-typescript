@@ -3,6 +3,18 @@
  *
  * A reusable alert component that uses Bootstrap classes for styling
  * and includes accessibility features.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <Alert
+ *   message="Success!"
+ *   variant="success"
+ *   dismissible={true}
+ *   timeout={3000}
+ *   onClose={() => console.log('Alert closed')}
+ * />
+ * ```
  */
 
 import { useEffect, useState } from 'react';
@@ -11,11 +23,17 @@ import Button from '@/components/atoms/button/Button';
 import { AlertVariant } from '@/types/error.types';
 
 type AlertProps = {
+  /** Whether the alert can be dismissed */
   dismissible?: boolean;
+  /** Content to display in the alert */
   message: React.ReactNode;
+  /** Whether the alert is visible */
   show?: boolean;
+  /** Auto-dismiss timeout in milliseconds */
   timeout?: number;
+  /** Bootstrap alert variant */
   variant?: AlertVariant;
+  /** Callback when alert is closed */
   onClose?: () => void;
 };
 
@@ -31,9 +49,7 @@ const Alert = ({
 
   useEffect(() => {
     setIsVisible(show);
-  }, [show]);
 
-  useEffect(() => {
     if (timeout && show) {
       const timer = setTimeout(() => {
         setIsVisible(false);
@@ -41,10 +57,14 @@ const Alert = ({
       }, timeout);
       return () => clearTimeout(timer);
     }
-    return () => {}; // Add empty cleanup function for other code paths.
   }, [timeout, show, onClose]);
 
   if (!isVisible) return null;
+
+  const handleClose = () => {
+    setIsVisible(false);
+    onClose?.();
+  };
 
   return (
     <div
@@ -53,6 +73,7 @@ const Alert = ({
       }`}
       role="alert"
       aria-live="polite"
+      data-testid="alert"
     >
       {message}
       {dismissible && (
@@ -60,10 +81,8 @@ const Alert = ({
           variant="secondary"
           className="btn-close"
           aria-label="Close alert"
-          onClick={() => {
-            setIsVisible(false);
-            onClose?.();
-          }}
+          onClick={handleClose}
+          data-testid="alert-close-button"
         />
       )}
     </div>
