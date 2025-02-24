@@ -456,3 +456,105 @@ exports[`TodoItem Component Snapshots matches overdue todo snapshot 1`] = `
   </div>
 </div>
 `;
+
+exports[`TodoItem Component Snapshots renders todo item correctly 1`] = `
+<div>
+  <div
+    class="card mb-1"
+    data-testid="todo-item-1"
+  >
+    <div
+      class="card-body"
+    >
+      <div
+        class="row align-items-start g-2"
+      >
+        <div
+          class="col"
+        >
+          <div
+            class="form-check"
+          >
+            <input
+              class="form-check-input mt-2"
+              id="todo-1"
+              type="checkbox"
+              value="1"
+            />
+            <label
+              class="form-check-label w-100 "
+              for="todo-1"
+            >
+              <div
+                class="ms-2"
+              >
+                <div
+                  class="d-flex align-items-center gap-2 mb-3"
+                >
+                  <h5
+                    class="card-title mb-0 text-break "
+                  >
+                    Test Todo
+                  </h5>
+                  <span
+                    class="badge bg-undefined"
+                    title="Priority: undefined"
+                  />
+                </div>
+                <h6
+                  class="card-subtitle text-body-secondary mb-2"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="bi bi-clock me-1"
+                  />
+                  Updated:
+                   
+                  2/16/2024, 6:00:00 PM
+                </h6>
+                <p
+                  class="card-text text-break mt-2 mb-0 "
+                >
+                  Test Description
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div
+          class="col-auto"
+        >
+          <div
+            class="btn-group"
+          >
+            <button
+              aria-label="Edit todo "Test Todo""
+              class="btn btn-secondary btn-sm"
+              data-testid="edit-todo-1"
+              type="button"
+            >
+              <i
+                aria-hidden="true"
+                class="bi bi-pencil-square me-1"
+              />
+              Edit
+            </button>
+            <button
+              aria-label="Delete todo "Test Todo""
+              class="btn btn-danger btn-sm"
+              data-testid="delete-todo-1"
+              type="button"
+            >
+              <i
+                aria-hidden="true"
+                class="bi bi-trash me-1"
+              />
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
